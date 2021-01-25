@@ -12,7 +12,7 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
 from django.conf import settings
 from django.core.mail import send_mail, EmailMessage
-
+from django.contrib.auth.forms import AuthenticationForm
 # Create your views here.
 def signup_view(request):
     if request.method == 'POST':
@@ -50,7 +50,6 @@ def login_view(request):
 
 def logout_view(request):
     logout(request)
-    messages.info(request, "You are now logged out")
     return redirect('home')
 
 
