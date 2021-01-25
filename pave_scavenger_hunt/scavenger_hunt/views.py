@@ -96,7 +96,7 @@ def scavengerhunt_view(request):
     user_instance = Profile.objects.get(user=request.user)
 
     if 'answer' in request.POST:
-        question_answered = QuestionInstance.get(pk=request.POST['questionno'])
+        question_answered = QuestionInstance.objects.get(pk=request.POST['questionno'])
         if question_answered.question.answer.lower() == request.POST['answer'].lower():
             user_instance.questions_completed.add(question_answered)
             user_instance.save()
