@@ -27,7 +27,7 @@
         <input type='Submit' value="Submit">
     </form>
     {% for hint in riddle.question.hints.all %}
-        <a onclick="showHint({{hint.pk}})">{{hint.helpfulness}} hint</a>
+        <a onclick="showHint({{hint.pk}})">{{hint.full_helpfullness}} hint</a>
         <div id='{{hint.pk}}' class='hint'>
             <p>{{hint.hint}}</p>
         </div>
