@@ -40,7 +40,7 @@ class Question(models.Model):
 
     def __str__(self):
         """String for representing the Model object."""
-        return f'{self.question_number}.) {self.question}'
+        return f'{self.question}'
 
 class Location(models.Model):
 
