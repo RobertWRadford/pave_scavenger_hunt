@@ -13,6 +13,7 @@ from django.template.loader import render_to_string
 from django.conf import settings
 from django.core.mail import send_mail, EmailMessage
 from django.contrib.auth.forms import AuthenticationForm
+from django.core.paginator import Paginator
 # Create your views here.
 def signup_view(request):
     if request.method == 'POST':
