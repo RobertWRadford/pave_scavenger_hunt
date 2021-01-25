@@ -1,12 +1,17 @@
 {% include "base.html" %}
 
 {% block content %}
-  <h1>Extras</h1>
-  <h2>Table of Contents</h2>
-  <ul>
+  	<h1>Extras</h1>
+  	<h2>Table of Contents</h2>
+  	<ul>
     {% for extra in extras %}
-      <li><a href='{{extra.link}}' target="_blank" rel="noopener noreferrer">{{extra.name}}</a></li>
+     	<li>
+      		<a href='{{extra.link}}' target="_blank" rel="noopener noreferrer">{{extra.name}}</a>
+      		{% if extra.description %}
+      			<p>{{extra.description}}</p>
+      		{% endif %}}
+      	</li>
     {% endfor %}
-  </ul>
-  <p>Explains this page</p>
+  	</ul>
+  	<p>Explains this page</p>
 {% endblock %}

@@ -9,6 +9,7 @@ class ExternalLink(models.Model):
 
     name = models.CharField(max_length=200, help_text='Enter the text you want to appear with the hyperlink.')
     link = models.URLField(max_length=200, help_text='Enter the target URL.')
+    description = models.CharField(max_length=2400, help_text='Enter a description of the location.', blank=True)
 
     def __str__(self):
         """String for representing the Model object."""
@@ -44,7 +45,7 @@ class Hint(models.Model):
 
 class Question(models.Model):
 
-    intro = models.CharField(max_length=1600, help_text='Enter the introduction text for this question/riddle.', blank=True)
+    intro = models.CharField(max_length=2400, help_text='Enter the introduction text for this question/riddle.', blank=True)
     album = models.ManyToManyField(Image, blank=True)
     question = models.CharField(max_length=450, help_text='Enter the prompt for the question/riddle.')
     hints = models.ManyToManyField(Hint, blank=True)
@@ -79,7 +80,7 @@ class QuestionInstance(models.Model):
     question_number = models.IntegerField(help_text='Enter the number for the question', unique=True)
     question = models.ForeignKey('Question', on_delete=models.CASCADE)
     location = models.ForeignKey('Location', on_delete=models.SET_NULL, null=True)
-    directions = models.CharField(max_length=1600, help_text='Enter directions from the current location to the answer location.', blank=True)
+    directions = models.CharField(max_length=2400, help_text='Enter directions from the current location to the answer location.', blank=True)
 
     def __str__(self):
         """String for representing the Model object."""
@@ -89,7 +90,7 @@ class PaveMember(models.Model):
 
     name = models.CharField(max_length=75, help_text='Enter the members name.')
     link = models.URLField(max_length=200, help_text='Enter the target images hosted URL. Check the live site to make sure that the image was accessible.', blank=True)
-    bio = models.CharField(max_length=1600, help_text='Enter a short bio of the member.', blank=True)
+    bio = models.CharField(max_length=2400, help_text='Enter a short bio of the member.', blank=True)
     email = models.EmailField(max_length=254, help_text='Enter the members email for contact.', blank=True)
 
     def __str__(self):
