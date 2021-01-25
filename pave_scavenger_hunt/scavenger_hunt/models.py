@@ -68,7 +68,7 @@ class QuestionInstance(models.Model):
 
     def __str__(self):
         """String for representing the Model object."""
-        return f'{self.question.question_number}.) {self.question.question}'
+        return f'{self.question_number}.) {self.question.question}'
 
 class PaveMember(models.Model):
 
