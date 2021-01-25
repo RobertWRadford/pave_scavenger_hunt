@@ -1,0 +1,19 @@
+{% include "base.html" %}
+
+{% block content %}
+  <h1>About</h1>
+  <p>Text about PAVE as an org</p>
+  <h2>Members</h2>
+  {% for member in members %}
+  	<h3>{{member.name}}</h3>
+  	{% if member.link %}
+    	<img src="{{member.link}}">
+    {% endif %}
+    {% if member.bio %}
+    	<p>{{member.bio}}</p>
+    {% endif %}
+    {% if member.email %}	
+    	<p>{{member.email}}</p>
+    {% endif %}
+  {% endfor %}
+{% endblock %}

@@ -1,0 +1,80 @@
+{% inlcude "base.html" %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'carousel.css' %}">
+{% for riddle in page_obj %}
+    <h1>Scavenger hunt</h1>
+    {% if riddle.question.intro %}
+        <p>{{riddle.question.intro}}</p>
+    {% endif %}
+    {% if riddle.album.all.count %}
+        <div class='slideshow-container'>
+            {% for image in riddle.album.all %}
+                <div class="mySlides fade">
+                    <img class='carouselImage' src="{{image.link}}" alt="UML diagram">
+                </div>
+            {% endfor %}
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+    {% endif %}
+    <h2>{{riddle.question.question}}</h2>
+    <form method="post">
+        {% csrf_token %}
+        <input name="questionno" type='hidden' value="{{riddle.question.pk}}">
+        <input name="answer" type="text" placeholder="Answer...">
+        <input type='Submit' value="Submit">
+    </form>
+    {% for hint in riddle.hints.all %}
+        <a onclick="showHint({{hint.pk}})">{{hint.helpfulness}} hint</a>
+        <div id='{{hint.pk}}' class='hint'>
+            <p>{{hint.hint}}</p>
+        </div>
+    {% endfor %}
+{% endfor %}
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+<script>
+    function showHint(key){
+        unhide = document.getElementById(key);
+        unhide.style.display = 'block';
+    }
+
+    // https://www.w3schools.com/howto/howto_js_slideshow.asp
+    var slideIndex = 1;
+    showSlides(slideIndex);
+
+    // Next/previous controls
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
+
+    function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        if (n > slides.length) {slideIndex = 1}
+        if (n < 1) {slideIndex = slides.length}
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        slides[slideIndex-1].style.display = "block";
+    }
+</script>
+{% endblock %}

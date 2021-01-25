@@ -1,0 +1,19 @@
+<nav class="navBar">
+    <div class= "navContainer">
+        <div class="navBarTitle"><strong> PAVE </strong></div>
+        <div>
+            <ul class="relative flex items-center justify-between h-16 bar">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                {% if request.user.is_authenticated %}
+                    <li>{{ request.user.username }}<span> | </span><a href="{% url 'logout' %}">Log Out</a></li>
+                    <li><a href="{% url 'start' %}">Scavenger Hunt</a></li>
+                {% else %}
+                    <li><a href="{% url 'login' %}">Sign In</a><span> | </span><a href="{% url 'signup' %}">Register</a></li>
+                {% endif %}
+                <li><a href="{% url 'about' %}">About</a></li>
+                <li><a href="{% url 'extras' %}">Extras</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+

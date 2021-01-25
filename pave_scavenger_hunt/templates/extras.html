@@ -1,0 +1,12 @@
+{% include "base.html" %}
+
+{% block content %}
+  <h1>Extras</h1>
+  <h2>Table of Contents</h2>
+  <ul>
+    {% for extra in extras %}
+      <li><a href='{{extra.link}}' target="_blank" rel="noopener noreferrer">{{extra.name}}</a></li>
+    {% endfor %}
+  </ul>
+  <p>Explains this page</p>
+{% endblock %}

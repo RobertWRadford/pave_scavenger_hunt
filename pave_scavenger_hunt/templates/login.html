@@ -1,0 +1,32 @@
+{% include 'base.html' %}
+
+{% block content %}
+
+</head>
+<div class="loginpage">
+    <div class="login">
+        <form method="post">
+            {% csrf_token %}
+            <h2 class="centeredText">Log In</h2>
+                <div class="FormCollection">
+                    <div class="InputParent">
+                        <input type="text" class="InputChild" name="username" placeholder="Username" required="required">
+                    </div>
+                </div>
+            <div class="FormCollection">
+                <div class="InputParent">
+                    <input type="password" class="InputChild" name="password" placeholder="Password" required="required">
+                </div>
+            </div>
+                <div class="FormCollection">
+                    <button type="submit" class="loginbtn"> Submit </button>
+                </div>
+        </form>
+    </div>
+        <div>  
+            <p> No account? </p> 
+            
+            <a class="answer" href="{% url 'signup'%}"> Create Account </a>
+        </div>
+</div>
+{% endblock %}
