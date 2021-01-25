@@ -10,7 +10,7 @@
     {% endif %}
     {% if riddle.album.all.count %}
         <div class='slideshow-container'>
-            {% for image in riddle.album.all %}
+            {% for image in riddle.question.album.all %}
                 <div class="mySlides fade">
                     <img class='carouselImage' src="{{image.link}}" alt="UML diagram">
                 </div>
@@ -26,7 +26,7 @@
         <input name="answer" type="text" placeholder="Answer...">
         <input type='Submit' value="Submit">
     </form>
-    {% for hint in riddle.hints.all %}
+    {% for hint in riddle.question.hints.all %}
         <a onclick="showHint({{hint.pk}})">{{hint.helpfulness}} hint</a>
         <div id='{{hint.pk}}' class='hint'>
             <p>{{hint.hint}}</p>
