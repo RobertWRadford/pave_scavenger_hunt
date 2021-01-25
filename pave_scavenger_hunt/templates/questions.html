@@ -22,7 +22,7 @@
     <h2>{{riddle.question.question}}</h2>
     <form method="post">
         {% csrf_token %}
-        <input name="questionno" type='hidden' value="{{riddle.question.pk}}">
+        <input name="questionno" type='hidden' value="{{riddle.pk}}">
         <input name="answer" type="text" placeholder="Answer...">
         <input type='Submit' value="Submit">
     </form>
