@@ -8,7 +8,7 @@ class ExternalLinkAdmin(admin.ModelAdmin):
 
 @admin.register(Image)
 class ImageAdmin(admin.ModelAdmin):
-    list_display = ('link',)
+    list_display = ('title',)
 
 @admin.register(Hint)
 class HintAdmin(admin.ModelAdmin):

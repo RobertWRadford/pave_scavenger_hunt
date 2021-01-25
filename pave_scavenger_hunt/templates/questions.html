@@ -8,7 +8,7 @@
     {% if riddle.question.intro %}
         <p>{{riddle.question.intro}}</p>
     {% endif %}
-    {% if riddle.question.album.all.count %}
+    {% if riddle.question.album.all.count > 1 %}
         <div class='slideshow-container'>
             {% for image in riddle.question.album.all %}
                 <div class="mySlides fade">
@@ -17,6 +17,10 @@
             {% endfor %}
             <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
             <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+    {% elif riddle.question.album.all.count %}
+        <div class="mySlides fade">
+            <img class='carouselImage' src="{{riddle.question.album.get.link}}" alt="UML diagram">
         </div>
     {% endif %}
     <h2>{{riddle.question.question}}</h2>
