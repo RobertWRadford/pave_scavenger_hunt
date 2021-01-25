@@ -10,9 +10,17 @@ class ExternalLink(models.Model):
     name = models.CharField(max_length=200, help_text='Enter the text you want to appear with the hyperlink.')
     link = models.URLField(max_length=200, help_text='Enter the target URL.')
 
+    def __str__(self):
+        """String for representing the Model object."""
+        return f'{self.name}'
+
 class Image(models.Model):
-    title = models.CharField(max_length=200, help_text='Optional. Enter descriptive text for the image', blank=True)
+    title = models.CharField(max_length=200, help_text='Optional. Enter descriptive text for the image', default='Image')
     link = models.URLField(max_length=200, help_text='Enter the target images hosted URL. Check the live site to make sure that the image was accessible.')
+
+    def __str__(self):
+        """String for representing the Model object."""
+        return f'{self.title}'
 
 class Hint(models.Model):
     hint = models.CharField(max_length=200, help_text='Enter the text for the hint.')
@@ -29,6 +37,10 @@ class Hint(models.Model):
 
     def full_helpfullness(self):
         return {'s': 'subtle', 'a': 'average', 'b': 'big'}[self.helpfulness]
+
+    def __str__(self):
+        """String for representing the Model object."""
+        return f'{self.hint}'
 
 class Question(models.Model):
 
