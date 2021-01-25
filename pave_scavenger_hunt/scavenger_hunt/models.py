@@ -17,13 +17,13 @@ class Image(models.Model):
 class Hint(models.Model):
     hint = models.CharField(max_length=200, help_text='Enter the text for the hint.')
 
-    strengths = (('s', 'subtle'), ('a', 'average'), ('b', 'big'),)
+    strengths = (('subtle'), ('average'), ('big'),)
 
     helpfulness = models.CharField(
-        max_length=1,
+        max_length=7,
         choices=strengths,
         blank=True,
-        default='a',
+        default='average',
         help_text='Hint helpfulness',
     )
 
