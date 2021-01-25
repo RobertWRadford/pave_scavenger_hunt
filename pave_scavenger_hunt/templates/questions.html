@@ -8,7 +8,7 @@
     {% if riddle.question.intro %}
         <p>{{riddle.question.intro}}</p>
     {% endif %}
-    {% if riddle.album.all.count %}
+    {% if riddle.question.album.all.count %}
         <div class='slideshow-container'>
             {% for image in riddle.question.album.all %}
                 <div class="mySlides fade">
