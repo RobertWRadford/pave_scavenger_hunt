@@ -100,13 +100,17 @@ def scavengerhunt_view(request):
         if question_answered.question.answer.lower() == request.POST['answer'].lower():
             user_instance.questions_completed.add(question_answered)
             user_instance.save()
+            if user_instance.questions_completed.all().count() == QuestionInstance.objects.all().count():
+                return redirect('completed')
 
     questions_answered = min(user_instance.questions_completed.all().count(), QuestionInstance.objects.all().count()-1)
     available = QuestionInstance.objects.all().order_by('question_number')[:questions_answered+1] #thought: could index by a parameter to limit
     paginator = Paginator(available, 1)
-
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
+    if 'page' in request.GET and 'answer' not in request.POST:
+        page_obj = paginator.get_page(request.GET['page'])
+    else:
+        page_obj = paginator.get_page(paginator.num_pages)
+    print('page_obj: ', page_obj)
 
     return render(request, 'questions.html', {'page_obj': page_obj})
 
@@ -117,3 +121,6 @@ def extras_view(request):
 def about_view(request):
     members = PaveMember.objects.all()
     return render(request, 'about.html', {'members': members})
+
+def completed_view(request):
+    return render(request, 'completed.html', {})

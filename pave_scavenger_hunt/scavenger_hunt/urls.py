@@ -13,5 +13,6 @@ urlpatterns = [
     path('scavengerhunt/', views.scavengerhunt_view, name='scavengerhunt'),
 	path('start/', views.start_view, name='start'),
 	path('extras/', views.extras_view, name='extras'),
+    path('completed/', views.completed_view, name='completed'),
 	path('about/', views.about_view, name='about'),
 ]
