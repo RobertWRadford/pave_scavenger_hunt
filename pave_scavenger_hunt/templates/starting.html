@@ -2,31 +2,34 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'carousel.css' %}">
 {% block content %}
-    <h1>Scavenger hunt</h1>
-    <h2>{{starting_location.address}}</h2>
-    {% if starting_location.description %}
-        <p>{{starting_location.description}}</p>
-    {% endif %}
-    {% if starting_location.album.all.count > 1 %}
-        <div class='slideshow-container'>
-            {% for image in starting_location.album.all %}
+    <section class="contentSection">
+        <h1>Scavenger hunt</h1>
+        <h2>{{starting_location.address}}</h2>
+        {% if starting_location.description %}
+            <p class="startingDescription">{{starting_location.description}}</p>
+        {% endif %}
+        {% if starting_location.album.all.count > 1 %}
+            <div class='slideshow-container starting'>
+                {% for image in starting_location.album.all %}
+                    <div class="mySlides fade">
+                        <img class='carouselImage' src="{{image.link}}" alt="UML diagram">
+                    </div>
+                {% endfor %}
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            </div>
+        {% elif starting_location.album.all.count %}
+            <div class='slideshow-container starting'>
                 <div class="mySlides fade">
-                    <img class='carouselImage' src="{{image.link}}" alt="UML diagram">
+                    <img class='carouselImage' src="{{starting_location.album.get.link}}" alt="UML diagram">
                 </div>
-            {% endfor %}
-            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-            <a class="next" onclick="plusSlides(1)">&#10095;</a>
-        </div>
-    {% elif starting_location.album.all.count %}
-        <div class="mySlides fade">
-            <img class='carouselImage' src="{{starting_location.album.get.link}}" alt="UML diagram">
-        </div>
-    {% endif %}
-    <form action="{% url 'scavengerhunt' %}" method="post">
-        {% csrf_token %}
-        <button type="submit">Start</button>
-    </form>
-
+            </div>
+        {% endif %}
+        <form action="{% url 'scavengerhunt' %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Start">
+        </form>
+    </section>
 
     <script>
         // https://www.w3schools.com/howto/howto_js_slideshow.asp

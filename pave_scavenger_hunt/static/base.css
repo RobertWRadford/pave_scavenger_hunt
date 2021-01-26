@@ -1,8 +1,135 @@
 body{
-    background-color: rgb(177, 177, 177);
+    background-image: url("https://www.commonapp.org/static/1c588201d2773604b235f6e2aa423c67/university-michigan_439.jpg");
     color: white;
+    margin:0;
 }
 
 .hint {
 	display: none;
+}
+
+header {
+	color: #ffcb0b;
+	background-color: rgba(0,50,106,0.80);
+	margin:0px;
+	border-bottom: 1px solid white;
+}
+
+.navBar {
+	display: grid;
+	grid-gap: 1rem;
+	grid-template-rows: max(6vw, 90px) max(4vw, 60px);
+	grid-template-columns: auto;
+	grid-template-areas: "header""items";
+	place-items: center;
+}
+
+.navBarTitle {
+	grid-area: header;
+	font-size: max(4.5vw, 64px);
+    text-align: center;
+    text-shadow: 
+    1px 1px rgb(120, 105, 20),
+    2px 2px rgb(120, 105, 20),
+    3px 3px rgb(120, 105, 20),
+    4px 4px rgb(120, 105, 20);
+}
+
+.navBarItemList {
+	margin:0;
+	grid-area: items;
+	display: flex;
+	flex-flow: row wrap;
+}
+
+.navBarItem {
+	color: rgb(255,203,11);
+	font-size: max(2vw, 16px);
+    text-align: center;
+    padding-right: 5vw;
+    margin-bottom: 2vw;
+}
+
+.navBarItem.standalone {
+	padding-left: 5vw;
+}
+
+.profileName {
+	font-size: max(2vw, 16px);
+    text-align: center;
+    padding-left: 5vw;
+    padding-right: 5px;
+}
+
+.navBarItem:hover {
+	color: white;
+}
+
+.contentSection {
+	color: #ffcb0b;
+	text-align: center;
+	margin-top: 5vw;
+	width: 80vw;
+	margin-left: 10vw;
+	background-color: rgba(0,50,106,0.80);
+	border: 1px solid white;
+	border-radius: 25px;
+	word-wrap: break-word;
+	padding: 1vw;
+}
+
+.contentSection * {
+	font-size: max(2vw,16px);
+}
+
+.contentSection a {
+	color: cyan;
+	font-size: max(2vw,10px);
+}
+
+.contentSection a:hover {
+	color: white;
+}
+
+.contentSection .next, .contentSection .prev {
+	color: rgb(225,225,225);
+}
+
+.startingDescription {
+	margin-bottom: 3vw;
+}
+
+.slideshow-container.starting {
+	margin-bottom: 5vw;
+}
+
+input[type=submit] {
+	color: rgb(0,30,76);
+	font-size: max(1vw,16px);
+	background-color: rgb(255,203,11);
+	border-radius: 15px;
+	padding: max(.5vw, 5px);
+	padding-left: max(1vw, 10px);
+	padding-right: max(1vw, 10px);
+}
+
+input[type=submit]:hover {
+	background-color: rgb(255,243,51);
+	cursor: pointer;
+}
+
+.hintReveal:hover {
+	cursor: pointer;
+}
+
+.answerForm {
+	margin-bottom: 3vw;
+}
+
+.pagination {
+	margin-top: 3vw;
+}
+
+.pagination * {
+	padding: 1vw;
 }

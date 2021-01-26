@@ -1,17 +1,15 @@
 {% include "base.html" %}
 
 {% block content %}
+  <section class="contentSection">
   	<h1>Extras</h1>
   	<h2>Table of Contents</h2>
-  	<ul>
     {% for extra in extras %}
-     	<li>
-      		<a href='{{extra.link}}' target="_blank" rel="noopener noreferrer">{{extra.name}}</a>
-      		{% if extra.description %}
-      			<p>{{extra.description}}</p>
-      		{% endif %}
-      	</li>
+    		<a href='{{extra.link}}' target="_blank" rel="noopener noreferrer">{{extra.name}}</a>
+    		{% if extra.description %}
+    			<p>{{extra.description}}</p>
+    		{% endif %}
     {% endfor %}
-  	</ul>
   	<p>Explains this page</p>
+  </section>
 {% endblock %}

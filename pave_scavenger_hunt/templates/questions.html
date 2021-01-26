@@ -3,57 +3,61 @@
 {% block content %}
 {% load static %}
 <link rel="stylesheet" href="{% static 'carousel.css' %}">
-{% for riddle in page_obj %}
-    <h1>Scavenger hunt</h1>
-    {% if riddle.question.intro %}
-        <p>{{riddle.question.intro}}</p>
-    {% endif %}
-    {% if riddle.question.album.all.count > 1 %}
-        <div class='slideshow-container'>
-            {% for image in riddle.question.album.all %}
+<section class="contentSection">
+    {% for riddle in page_obj %}
+        <h1>Scavenger hunt</h1>
+        {% if riddle.question.intro %}
+            <p>{{riddle.question.intro}}</p>
+        {% endif %}
+        {% if riddle.question.album.all.count > 1 %}
+            <div class='slideshow-container'>
+                {% for image in riddle.question.album.all %}
+                    <div class="mySlides fade">
+                        <img class='carouselImage' src="{{image.link}}" alt="UML diagram">
+                    </div>
+                {% endfor %}
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            </div>
+        {% elif riddle.question.album.all.count %}
+            <div class='slideshow-container'>
                 <div class="mySlides fade">
-                    <img class='carouselImage' src="{{image.link}}" alt="UML diagram">
+                    <img class='carouselImage' src="{{riddle.question.album.get.link}}" alt="UML diagram">
                 </div>
-            {% endfor %}
-            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-            <a class="next" onclick="plusSlides(1)">&#10095;</a>
-        </div>
-    {% elif riddle.question.album.all.count %}
-        <div class="mySlides fade">
-            <img class='carouselImage' src="{{riddle.question.album.get.link}}" alt="UML diagram">
-        </div>
-    {% endif %}
-    <h2>{{riddle.question.question}}</h2>
-    <form method="post">
-        {% csrf_token %}
-        <input name="questionno" type='hidden' value="{{riddle.pk}}">
-        <input name="answer" type="text" placeholder="Answer...">
-        <input type='Submit' value="Submit">
-    </form>
-    {% for hint in riddle.question.hints.all %}
-        <a onclick="showHint({{hint.pk}})">{{hint.full_helpfullness}} hint</a>
-        <div id='{{hint.pk}}' class='hint'>
-            <p>{{hint.hint}}</p>
-        </div>
+            </div>
+        {% endif %}
+        <h2>{{riddle.question.question}}</h2>
+        <form class="answerForm" method="post">
+            {% csrf_token %}
+            <input name="questionno" type='hidden' value="{{riddle.pk}}">
+            <input name="answer" type="text" placeholder="Answer...">
+            <input type='Submit' value="Submit">
+        </form>
+        {% for hint in riddle.question.hints.all %}
+            <a class="hintReveal" onclick="showHint({{hint.pk}})">{{hint.full_helpfullness}} hint</a>
+            <div id='{{hint.pk}}' class='hint'>
+                <p>{{hint.hint}}</p>
+            </div>
+        {% endfor %}
     {% endfor %}
-{% endfor %}
-<div class="pagination">
-    <span class="step-links">
-        {% if page_obj.has_previous %}
-            <a href="?page=1">&laquo; first</a>
-            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
-        {% endif %}
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+            {% endif %}
 
-        <span class="current">
-            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">next</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
         </span>
-
-        {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}">next</a>
-            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
-        {% endif %}
-    </span>
-</div>
+    </div>
+</section>
 
 <script>
     function showHint(key){

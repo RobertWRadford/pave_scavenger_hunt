@@ -47,7 +47,7 @@ class Question(models.Model):
 
     intro = models.CharField(max_length=2400, help_text='Enter the introduction text for this question/riddle.', blank=True)
     album = models.ManyToManyField(Image, blank=True)
-    question = models.CharField(max_length=450, help_text='Enter the prompt for the question/riddle.')
+    question = models.CharField(max_length=1200, help_text='Enter the prompt for the question/riddle.')
     hints = models.ManyToManyField(Hint, blank=True)
     answer = models.CharField(max_length=200, help_text='Enter the answer to the question/riddle.')
 
