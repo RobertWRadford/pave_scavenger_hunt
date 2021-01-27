@@ -100,19 +100,17 @@ def scavengerhunt_view(request):
         if question_answered.question.answer.lower() == request.POST['answer'].lower():
             user_instance.questions_completed.add(question_answered)
             user_instance.save()
-            if user_instance.questions_completed.all().count() == QuestionInstance.objects.all().count():
-                return redirect('completed')
 
-    questions_answered = min(user_instance.questions_completed.all().count(), QuestionInstance.objects.all().count()-1)
-    available = QuestionInstance.objects.all().order_by('question_number')[:questions_answered+1] #thought: could index by a parameter to limit
+    questions_answered = user_instance.questions_completed.all().count()
+    to_show = questions_answered+1 if questions_answered < QuestionInstance.objects.all().count() else questions_answered
+    available = QuestionInstance.objects.all().order_by('question_number')[:to_show] #thought: could index by a parameter to limit
     paginator = Paginator(available, 1)
-    if 'page' in request.GET and 'answer' not in request.POST:
+    if 'page' in request.GET:
         page_obj = paginator.get_page(request.GET['page'])
     else:
         page_obj = paginator.get_page(paginator.num_pages)
-    print('page_obj: ', page_obj)
 
-    return render(request, 'questions.html', {'page_obj': page_obj})
+    return render(request, 'questions.html', {'page_obj': page_obj, 'answered': questions_answered})
 
 def extras_view(request):
     extras = ExternalLink.objects.all()

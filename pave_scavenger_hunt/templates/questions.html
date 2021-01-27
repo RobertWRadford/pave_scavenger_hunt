@@ -39,9 +39,10 @@
                 <p>{{hint.hint|linebreaks}}</p>
             </div>
         {% endfor %}
-        {% if page_obj.has_next %}
+        {% if answered >= page_obj.number %}
             <h3>correct!</h3>
             <p>{{riddle.location.description|linebreaks}}</p>
+            <h3>Directions</h3>
             <p>{{riddle.directions|linebreaks}}</p>
         {% endif %}
     {% endfor %}
