@@ -15,4 +15,15 @@
 
   {% endblock content %}
 </body>
+<script>
+  //source https://www.w3schools.com/howto/howto_js_mobile_navbar.asp
+  function dropDown() {
+    var navElements = document.getElementById("navBarItemList");
+    if (navElements.style.display === "block") {
+      navElements.style.display = "none";
+    } else {
+      navElements.style.display = "block";
+    }
+  }
+</script>
 </html>

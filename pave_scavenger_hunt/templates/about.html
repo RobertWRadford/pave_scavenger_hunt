@@ -11,7 +11,7 @@
       	<img src="{{member.link}}">
       {% endif %}
       {% if member.bio %}
-      	<p>{{member.bio}}</p>
+      	<p>{{member.bio|linebreaks}}</p>
       {% endif %}
       {% if member.email %}	
       	<p>{{member.email}}</p>

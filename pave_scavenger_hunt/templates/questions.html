@@ -26,7 +26,7 @@
                 </div>
             </div>
         {% endif %}
-        <h2>{{riddle.question.question}}</h2>
+        <h3>{{riddle.question.question|linebreaks}}</h3>
         <form class="answerForm" method="post">
             {% csrf_token %}
             <input name="questionno" type='hidden' value="{{riddle.pk}}">
@@ -34,7 +34,7 @@
             <input type='Submit' value="Submit">
         </form>
         {% for hint in riddle.question.hints.all %}
-            <a class="hintReveal" onclick="showHint({{hint.pk}})">{{hint.full_helpfullness}} hint</a>
+            <a class="hintReveal" onclick="showHint({{hint.pk}})">Click to reveal a{% if hint.helpfulness == 'a'%}n{%endif%} {{hint.full_helpfullness}} hint</a>
             <div id='{{hint.pk}}' class='hint'>
                 <p>{{hint.hint}}</p>
             </div>
@@ -44,7 +44,7 @@
         <span class="step-links">
             {% if page_obj.has_previous %}
                 <a href="?page=1">&laquo; first</a>
-                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                <a href="?page={{ page_obj.previous_page_number }}">&lt;</a>
             {% endif %}
 
             <span class="current">
@@ -52,7 +52,7 @@
             </span>
 
             {% if page_obj.has_next %}
-                <a href="?page={{ page_obj.next_page_number }}">next</a>
+                <a href="?page={{ page_obj.next_page_number }}">&gt;</a>
                 <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
             {% endif %}
         </span>
@@ -62,7 +62,12 @@
 <script>
     function showHint(key){
         unhide = document.getElementById(key);
-        unhide.style.display = 'block';
+        if (unhide.style.display == 'none'){
+            unhide.style.display = 'block';
+        }
+        else{
+            unhide.style.display = 'none';
+        }
     }
 
     // https://www.w3schools.com/howto/howto_js_slideshow.asp

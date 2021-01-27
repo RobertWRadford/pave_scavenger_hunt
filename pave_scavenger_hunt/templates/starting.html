@@ -4,9 +4,10 @@
 {% block content %}
     <section class="contentSection">
         <h1>Scavenger hunt</h1>
-        <h2>{{starting_location.address}}</h2>
+        <h2>Start At:</h2>
+        <h3>{{starting_location.address}}</h3>
         {% if starting_location.description %}
-            <p class="startingDescription">{{starting_location.description}}</p>
+            <p class="startingDescription">{{starting_location.description|linebreaks}}</p>
         {% endif %}
         {% if starting_location.album.all.count > 1 %}
             <div class='slideshow-container starting'>
