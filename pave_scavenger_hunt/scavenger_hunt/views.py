@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, reverse
-from .models import ExternalLink, Image, Hint, Question, Location, StartingInstance, QuestionInstance, PaveMember, Profile
+from .models import ExternalLink, Image, Hint, Question, Location, StartingInstance, QuestionInstance, PaveMember, Profile, ExtraPageAbout
 from .tokens import activate_account_token
 from django.http import HttpResponse, HttpRequest
 from django.contrib.auth import login, authenticate, logout, tokens
@@ -116,7 +116,8 @@ def scavengerhunt_view(request):
 
 def extras_view(request):
     extras = ExternalLink.objects.all()
-    return render(request, 'extras.html', {'extras': extras})
+    about = ExtraPageAbout.objects.get()
+    return render(request, 'extras.html', {'extras': extras, 'aboutExtras': about})
 
 def about_view(request):
     members = PaveMember.objects.all()

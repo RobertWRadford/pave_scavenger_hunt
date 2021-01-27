@@ -96,22 +96,20 @@ body{
 		margin-left: 50%;
 		transform: translateX(-50%);
 		z-index: 1;
-	}
-	.dropDownItem{
-		color: rgb(255,203,11);
-	}
-	.dropDown:hover .dropDownItems {
-		display: block;
 		border: 1px solid white;
 		border-radius: 10px;
 		width: 60vw;
 	}
-	.dropDown:hover .dropDownItem {
-		display: block;
+	.dropDownItem{
+		display: inherit;
+		color: rgb(255,203,11);
 		outline: 1px solid white;
 		padding: 10px;
 		font-size: max(2vw, 16px);
 	}
+/*	.dropDown:hover .dropDownItem {
+		display: block;
+	}*/
 	.dropDownItem:hover{
 		color:white;
 	}
@@ -123,9 +121,9 @@ body{
 .contentSection {
 	color: #ffcb0b;
 	text-align: center;
+	margin:auto;
 	margin-top: 5vw;
 	width: 80vw;
-	margin-left: 10vw;
 	background-color: rgba(0,50,106,0.80);
 	border: 1px solid white;
 	border-radius: 25px;
@@ -151,12 +149,12 @@ body{
 }
 
 .contentSection a {
-	color: cyan;
-	font-size: max(1vw,10px);
+	color: white;
+	font-size: max(1vw,12px);
 }
 
 .contentSection a:hover {
-	color: white;
+	color: #ffcb0b;
 }
 
 .contentSection .next, .contentSection .prev {
@@ -205,4 +203,31 @@ input[type=submit]:hover {
 
 .pagination * {
 	padding: 1vw;
+}
+
+.helptext{
+	display: block;
+}
+
+.uppage {
+	text-align: center;
+}
+
+.uppage li {
+	text-align: center;
+	word-wrap: break-word;
+}
+
+.uppage ul {
+	list-style-type: none;
+	display: inline-block;
+	width: 70%;
+	padding-left: 0;
+}
+
+.uppage input:not([type=submit]){
+	display: block;
+	width:min(90%, 400px);
+	margin-left: 50%;
+	transform: translateX(-50%);
 }

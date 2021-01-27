@@ -96,6 +96,13 @@ class PaveMember(models.Model):
     def __str__(self):
         return f'{self.name}'
 
+class ExtraPageAbout(models.Model):
+
+    description = models.TextField(help_text='Enter the description block for the extras page', default='No additional information')
+
+    def __str__(self):
+        return f'{self.description[:25]}...'
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     email_confirmed = models.BooleanField(default=False)

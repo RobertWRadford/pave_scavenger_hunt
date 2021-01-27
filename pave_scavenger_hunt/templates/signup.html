@@ -1,12 +1,14 @@
 {% include 'base.html' %}
 {% block content %}
-<div class="uppage">
-    <div class="signup">
-      <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button class="loginbtn" type="submit"> Register</button>
-      </form>
-    </div>
-  </div>
+<section class="contentSection">
+	<div class="uppage">
+	    <div class="signup">
+	      <form method="post">
+	        {% csrf_token %}
+	        {{ form.as_p }}
+	        <input class="loginbtn" type="submit" value="Register">
+	      </form>
+	    </div>
+	</div>
+</section>
 {% endblock %}

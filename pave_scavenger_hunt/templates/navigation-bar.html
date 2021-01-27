@@ -2,7 +2,7 @@
 <nav class="navBar">
     <div class="navBarTitle"><strong>SCAVENGER HUNT</strong></div>
     <div class="dropDown">   
-        <a class="dropDownLink">View other pages
+        <a class="dropDownLink" onclick="displayItems()">View other pages
             <i class="fa fa-caret-down"></i>
         </a>
         <div class="dropDownItems">
@@ -11,7 +11,8 @@
                 <a class="dropDownItem" href="{% url 'logout' %}">Log Out</a>
                 <a class="dropDownItem standalone" href="{% url 'start' %}">Scavenger Hunt</a>
             {% else %}
-                <a class="dropDownItem standalone" href="{% url 'login' %}">Sign In</a><span> | </span><a class="dropDownItem standalone" href="{% url 'signup' %}">Register</a>
+                <a class="dropDownItem standalone" href="{% url 'login' %}">Sign In</a>
+                <a class="dropDownItem standalone" href="{% url 'signup' %}">Register</a>
             {% endif %}
             <a class="dropDownItem standalone" href="{% url 'about' %}">About</a>
             <a class="dropDownItem standalone" href="{% url 'extras' %}">Extras</a>
@@ -29,3 +30,13 @@
         <a class="navBarItem standalone" href="{% url 'extras' %}">Extras</a>
     </div>
 </nav>
+<script type="text/javascript">
+    function displayItems(){
+        itemDiv = document.getElementsByClassName('dropDownItems')[0];
+        if(itemDiv.style.display=='none'){
+            itemDiv.style.display='block';
+        } else {
+            itemDiv.style.display='none'
+        }
+    }
+</script>

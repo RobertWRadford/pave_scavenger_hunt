@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import ExternalLink, Image, Hint, Question, Location, StartingInstance, QuestionInstance, PaveMember, Profile
+from .models import ExternalLink, Image, Hint, Question, Location, StartingInstance, QuestionInstance, PaveMember, Profile, ExtraPageAbout
 # Register your models here.
 
 @admin.register(ExternalLink)
@@ -37,3 +37,7 @@ class PaveMemberAdmin(admin.ModelAdmin):
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
     list_display = ('__str__','getEmail','questionsCompleted')
+
+@admin.register(ExtraPageAbout)
+class ExtraPageAboutAdmin(admin.ModelAdmin):
+	list_display = ('__str__',)
