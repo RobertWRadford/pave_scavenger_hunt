@@ -2,32 +2,35 @@
 <nav class="navBar">
     <div class="navBarTitle"><strong>SCAVENGER HUNT</strong></div>
     <div class="dropDown">   
-        <a class="dropDownLink" onclick="displayItems()">View other pages
+        <a class="dropDownLink" onclick="displayItems()">
+            <i class="fa fa-caret-down"></i>
+            View other pages
             <i class="fa fa-caret-down"></i>
         </a>
         <div class="dropDownItems">
             <a class="dropDownItem" href="{% url 'home' %}">Home</a>
+            <a class="dropDownItem standalone" href="{% url 'about' %}">About</a>
+            <a class="dropDownItem standalone" href="{% url 'extras' %}">Extras</a>
             {% if request.user.is_authenticated %}
-                <a class="dropDownItem" href="{% url 'logout' %}">Log Out</a>
                 <a class="dropDownItem standalone" href="{% url 'start' %}">Scavenger Hunt</a>
+                <a class="dropDownItem" href="{% url 'logout' %}">Log Out</a>
             {% else %}
                 <a class="dropDownItem standalone" href="{% url 'login' %}">Sign In</a>
                 <a class="dropDownItem standalone" href="{% url 'signup' %}">Register</a>
             {% endif %}
-            <a class="dropDownItem standalone" href="{% url 'about' %}">About</a>
-            <a class="dropDownItem standalone" href="{% url 'extras' %}">Extras</a>
         </div>
     </div>
     <div class="navBarItemList">
         <a class="navBarItem" href="{% url 'home' %}">Home</a>
-        {% if request.user.is_authenticated %}
-            <span class="profileName"><strong>{{ request.user.username }} |</strong></span> <a class="navBarItem" href="{% url 'logout' %}">Log Out</a>
-            <a class="navBarItem standalone" href="{% url 'start' %}">Scavenger Hunt</a>
-        {% else %}
-            <a class="navBarItem standalone" href="{% url 'login' %}">Sign In</a><span> | </span><a class="navBarItem standalone" href="{% url 'signup' %}">Register</a>
-        {% endif %}
         <a class="navBarItem standalone" href="{% url 'about' %}">About</a>
         <a class="navBarItem standalone" href="{% url 'extras' %}">Extras</a>
+        {% if request.user.is_authenticated %}
+            <a class="navBarItem standalone" href="{% url 'start' %}">Scavenger Hunt</a>
+            <span class="profileName"><strong>{{ request.user.username }} |</strong></span> <a class="navBarItem" href="{% url 'logout' %}">Log Out</a>
+        {% else %}
+            <a class="navBarItem standalone" href="{% url 'login' %}">Sign In</a>
+            <a class="navBarItem standalone" href="{% url 'signup' %}">Register</a>
+        {% endif %}
     </div>
 </nav>
 <script type="text/javascript">
