@@ -69,6 +69,10 @@ body{
 	.navBarItem:hover {
 		color: white;
 	}
+
+	.contentSection {
+		width:70%;
+	}
 }
 
 @media (max-width:567px){
@@ -120,6 +124,9 @@ body{
 	.navBarItemList * {
 		display: none;
 	}
+	.contentSection{
+		width:80%;
+	}
 }
 
 .contentSection {
@@ -127,7 +134,6 @@ body{
 	text-align: center;
 	margin:auto;
 	margin-top: 5vw;
-	width: 70%;
 	background-color: rgba(0,50,106,0.80);
 	border: 1px solid white;
 	border-radius: 25px;
@@ -195,8 +201,8 @@ input[type=submit] {
 	font-size: max(1vw,16px);
 	background-color: rgb(255,203,11);
 	padding: max(.5vw, 5px);
-	padding-left: max(1vw, 10px);
-	padding-right: max(1vw, 10px);
+	padding-left: max(2.5vw, 25px);
+	padding-right: max(2.5vw, 25px);
 }
 
 input[type=submit]:hover {
@@ -248,7 +254,7 @@ input[type=submit]:hover {
 }
 
 .memberPhoto{
-	width: 25%;
+	width: max(25%, 100px);
     border-radius: 10% 30%;
     border: solid 4px #ffcb0b;
 }
