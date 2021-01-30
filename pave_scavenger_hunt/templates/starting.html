@@ -4,8 +4,10 @@
 {% block content %}
     <section class="contentSection">
         <h1>Scavenger Hunt</h1>
+        <hr class="divider">
         <h2>Start At:</h2>
         <h3>{{starting_location.address}}</h3>
+        <hr class="smaller divider">
         {% if starting_location.description %}
             <p class="startingDescription">{{starting_location.description|linebreaks}}</p>
         {% endif %}
@@ -30,6 +32,10 @@
             {% csrf_token %}
             <input type="submit" value="Start">
         </form>
+        {%if starting_location.link%}
+            <hr class="smaller divider">
+            <a href="{{starting_location.link}}" target="_blank" rel="noopener noreferrer">See more about this location</a>
+        {%endif%}
     </section>
 
     <script>

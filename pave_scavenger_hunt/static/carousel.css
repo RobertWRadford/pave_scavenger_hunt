@@ -19,6 +19,11 @@
   width: 100%;
 }
 
+.locImg {
+  display: none;
+  width: 100%;
+}
+
 /* Next & previous buttons */
 .prev {
     left: 0%;

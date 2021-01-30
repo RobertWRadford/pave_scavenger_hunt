@@ -4,8 +4,10 @@
   <section class="contentSection">
   	<h1>Extras</h1>
     <p>{{aboutExtras.description|linebreaks}}</p>
+    <hr class="divider">
   	<h2>Table of Contents</h2>
     {% for extra in extras %}
+        <hr class="smaller divider">
     		<a href='{{extra.link}}' target="_blank" rel="noopener noreferrer">{{extra.name}}</a>
     		{% if extra.description %}
     			<p>{{extra.description|linebreaks}}</p>

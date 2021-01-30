@@ -84,6 +84,10 @@ body{
 	.navBarTitle{
 		font-size: max(4vw,36px);
 	}
+	.dropDownLink:hover {
+		color:white;
+		cursor:pointer;
+	}
 	.dropDown {
 		margin-top: max(1vw, 5px);
 		overflow: hidden;
@@ -123,34 +127,45 @@ body{
 	text-align: center;
 	margin:auto;
 	margin-top: 5vw;
-	width: 80vw;
+	width: 70%;
 	background-color: rgba(0,50,106,0.80);
 	border: 1px solid white;
 	border-radius: 25px;
 	word-wrap: break-word;
-	padding: 3vw;
-	line-height: max(2.5vw, 20px);
+	padding: 5%;
+	line-height: max(2.4vw, 24px);
 }
 
-.contentSection * {
-	font-size: max(1.5vw,14px);
+.contentSection *:not(h1, h2, h3, h4) {
+	font-size: max(1.4vw,14px);
 }
 
 .contentSection h1 {
-	font-size: max(3.5vw,32px);
+	font-size: max(3vw,30px);
+}
+
+.contentSection h1 p{
+	font-size: max(3vw,30px);
 }
 
 .contentSection h2 {
-	font-size: max(2.5vw,24px);
+	font-size: max(2.2vw,22px);
+}
+
+.contentSection h2 p {
+	font-size: max(2.2vw,22px);
 }
 
 .contentSection h3 {
-	font-size: max(2vw,18px);
+	font-size: max(1.8vw,18px);
+}
+
+.contentSection h3 p {
+	font-size: max(1.8vw,18px);
 }
 
 .contentSection a {
 	color: white;
-	font-size: max(1.5vw,14px);
 }
 
 .contentSection a:hover {
@@ -230,4 +245,22 @@ input[type=submit]:hover {
 	width:min(90%, 400px);
 	margin-left: 50%;
 	transform: translateX(-50%);
+}
+
+.memberPhoto{
+	width: 25%;
+    border-radius: 10% 30%;
+    border: solid 4px #ffcb0b;
+}
+
+.divider {
+    width:80%;
+    margin:auto;
+    border-radius: 25px;
+    margin-top: max(1.5vw, 15px);
+}
+.smaller.divider {
+    width:40%;
+    margin-top: 25px;
+    margin-bottom: 25px;
 }

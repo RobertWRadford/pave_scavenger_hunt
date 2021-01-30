@@ -63,6 +63,7 @@ class Location(models.Model):
     address = models.CharField(max_length=200, help_text='Enter the address of the location.')
     description = models.TextField(help_text='Enter a description of the location and it\'s significance.', blank=True)
     album = models.ManyToManyField(Image, blank=True)
+    link = models.URLField(max_length=200, help_text='Enter the target URL.', blank=True)
 
     def __str__(self):
         """String for representing the Model object."""

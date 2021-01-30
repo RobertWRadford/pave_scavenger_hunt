@@ -5,7 +5,8 @@
 <link rel="stylesheet" href="{% static 'carousel.css' %}">
 <section class="contentSection">
     {% for riddle in page_obj %}
-        <h1>Scavenger hunt</h1>
+        <h1>Scavenger Hunt</h1>
+        <hr class="divider">
         {% if riddle.question.intro %}
             <p>{{riddle.question.intro|linebreaks}}</p>
         {% endif %}
@@ -40,12 +41,37 @@
             </div>
         {% endfor %}
         {% if answered >= page_obj.number %}
-            <h3>correct!</h3>
+            <hr class="divider">
+            <h2>correct!</h2>
+            <h3>{{riddle.location.address}}</h3>
+            {% if riddle.location.album.all.count > 1 %}
+                <div class='slideshow-container'>
+                    {% for image in riddle.location.album.all %}
+                        <div class="locImg fade">
+                            <img class='carouselImage' src="{{image.link}}" alt="UML diagram">
+                        </div>
+                    {% endfor %}
+                    <a class="prev" onclick="plusSlide(-1)">&#10094;</a>
+                    <a class="next" onclick="plusSlide(1)">&#10095;</a>
+                </div>
+            {% elif riddle.location.album.all.count %}
+                <div class='slideshow-container'>
+                    <div class="locImg fade">
+                        <img class='carouselImage' src="{{riddle.question.album.get.link}}" alt="UML diagram">
+                    </div>
+                </div>
+            {% endif %}
             <p>{{riddle.location.description|linebreaks}}</p>
+            <hr class="smaller divider">
             <h3>Directions</h3>
             <p>{{riddle.directions|linebreaks}}</p>
+            {%if riddle.location.link%}
+                <hr class="smaller divider">
+                <a href="{{riddle.location.link}}" target="_blank" rel="noopener noreferrer">See more about this location</a>
+            {%endif%}
         {% endif %}
     {% endfor %}
+    <hr class="divider">
     <div class="pagination">
         <span class="step-links">
             {% if page_obj.has_previous %}
@@ -94,6 +120,26 @@
             slides[i].style.display = "none";
         }
         slides[slideIndex-1].style.display = "block";
+    }
+
+    //repeat for location carousel
+    var locSlideIndex = 1;
+    showSlide(locSlideIndex);
+
+    // Next/previous controls
+    function plusSlide(n) {
+        showSlide(locSlideIndex += n);
+    }
+
+    function showSlide(n) {
+        var i;
+        var slides = document.getElementsByClassName("locImg");
+        if (n > slides.length) {locSlideIndex = 1}
+        if (n < 1) {locSlideIndex = slides.length}
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        slides[locSlideIndex-1].style.display = "block";
     }
 </script>
 {% endblock %}
