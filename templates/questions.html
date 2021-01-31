@@ -42,7 +42,7 @@
         {% endfor %}
         {% if answered >= page_obj.number %}
             <hr class="divider">
-            <h2>correct!</h2>
+            <h2>Correct!</h2>
             <h3>{{riddle.location.address}}</h3>
             {% if riddle.location.album.all.count > 1 %}
                 <div class='slideshow-container'>
@@ -62,9 +62,11 @@
                 </div>
             {% endif %}
             <p>{{riddle.location.description|linebreaks}}</p>
-            <hr class="smaller divider">
-            <h3>Directions</h3>
-            <p>{{riddle.directions|linebreaks}}</p>
+            {%if riddle.directions%}
+                <hr class="smaller divider">
+                <h3>Directions</h3>
+                <p>{{riddle.directions|linebreaks}}</p>
+            {%endif%}
             {%if riddle.location.link%}
                 <hr class="smaller divider">
                 <a href="{{riddle.location.link}}" target="_blank" rel="noopener noreferrer">See more about this location</a>
@@ -94,14 +96,13 @@
 <script>
     function showHint(key){
         unhide = document.getElementById(key);
-        if (unhide.style.display == 'none'){
-            unhide.style.display = 'block';
-        }
-        else{
+        if (unhide.style.display == 'block'){
             unhide.style.display = 'none';
         }
+        else{
+            unhide.style.display = 'block';
+        }
     }
-
     // https://www.w3schools.com/howto/howto_js_slideshow.asp
     var slideIndex = 1;
     showSlides(slideIndex);

@@ -4,8 +4,16 @@ body{
     margin:0;
 }
 
+.hintReveal{
+	display: block;
+}
+
 .hint {
 	display: none;
+}
+
+.extraimg {
+	width: 50%;
 }
 
 @media (min-width:568px){
@@ -22,8 +30,7 @@ body{
 
 	.navBar {
 		display: grid;
-		grid-gap: 1rem;
-		grid-template-rows: max(6vw, 60px) max(4vw, 45px);
+		grid-template-rows: max(5vw, 50px) max(3vw, 30px);
 		grid-template-columns: auto;
 		grid-template-areas: "header""items";
 		place-items: center;
@@ -31,7 +38,7 @@ body{
 
 	.navBarTitle {
 		grid-area: header;
-		font-size: max(5vw, 36px);
+		font-size: max(3.4vw, 34px);
 	    text-align: center;
 	    text-shadow: 
 	    1px 1px rgb(120, 105, 20),
@@ -45,14 +52,13 @@ body{
 		grid-area: items;
 		display: flex;
 		flex-flow: row wrap;
+		justify-content: space-between;
 	}
 
 	.navBarItem {
 		color: rgb(255,203,11);
-		font-size: max(2vw, 16px);
+		font-size: max(1.4vw, 14px);
 	    text-align: center;
-	    padding-right: 3vw;
-	    margin-bottom: 2vw;
 	}
 
 	.navBarItem.standalone {
@@ -60,7 +66,7 @@ body{
 	}
 
 	.profileName {
-		font-size: max(2vw, 16px);
+		font-size: max(1.4vw, 14px);
 	    text-align: center;
 	    padding-left: 3vw;
 	    padding-right: 5px;
@@ -68,10 +74,6 @@ body{
 
 	.navBarItem:hover {
 		color: white;
-	}
-
-	.contentSection {
-		width:70%;
 	}
 }
 
@@ -124,9 +126,6 @@ body{
 	.navBarItemList * {
 		display: none;
 	}
-	.contentSection{
-		width:80%;
-	}
 }
 
 .contentSection {
@@ -139,7 +138,9 @@ body{
 	border-radius: 25px;
 	word-wrap: break-word;
 	padding: 5%;
+	padding-top: 0;
 	line-height: max(2.4vw, 24px);
+	width:80%;
 }
 
 .contentSection *:not(h1, h2, h3, h4) {

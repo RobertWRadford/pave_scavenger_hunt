@@ -10,11 +10,12 @@
         <div class="dropDownItems">
             <a class="dropDownItem" href="{% url 'home' %}">Home</a>
             <a class="dropDownItem standalone" href="{% url 'about' %}">About</a>
-            <a class="dropDownItem standalone" href="{% url 'extras' %}">Extras</a>
             {% if request.user.is_authenticated %}
                 <a class="dropDownItem standalone" href="{% url 'start' %}">Scavenger Hunt</a>
+                <a class="dropDownItem standalone" href="{% url 'extras' %}">Extras</a>
                 <a class="dropDownItem" href="{% url 'logout' %}">Log Out</a>
             {% else %}
+                <a class="dropDownItem standalone" href="{% url 'extras' %}">Extras</a>
                 <a class="dropDownItem standalone" href="{% url 'login' %}">Sign In</a>
                 <a class="dropDownItem standalone" href="{% url 'signup' %}">Register</a>
             {% endif %}
@@ -23,11 +24,12 @@
     <div class="navBarItemList">
         <a class="navBarItem" href="{% url 'home' %}">Home</a>
         <a class="navBarItem standalone" href="{% url 'about' %}">About</a>
-        <a class="navBarItem standalone" href="{% url 'extras' %}">Extras</a>
         {% if request.user.is_authenticated %}
             <a class="navBarItem standalone" href="{% url 'start' %}">Scavenger Hunt</a>
+            <a class="navBarItem standalone" href="{% url 'extras' %}">Extras</a>
             <span class="profileName"><strong>{{ request.user.username }} |</strong></span> <a class="navBarItem" href="{% url 'logout' %}">Log Out</a>
         {% else %}
+            <a class="navBarItem standalone" href="{% url 'extras' %}">Extras</a>
             <a class="navBarItem standalone" href="{% url 'login' %}">Sign In</a>
             <a class="navBarItem standalone" href="{% url 'signup' %}">Register</a>
         {% endif %}
