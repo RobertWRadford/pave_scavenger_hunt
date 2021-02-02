@@ -33,7 +33,7 @@ footer a:hover {
 }
 
 .extraimg {
-    width: max(50%, 200px);
+    width: max(40%, 180px);
     display: block;
     margin: auto;
     margin-top: 15px;
