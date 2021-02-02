@@ -177,10 +177,12 @@ footer a:hover {
 
 .contentSection h3 {
 	font-size: max(1.6vw,16px);
+	font-weight: 500;
 }
 
 .contentSection h3 p {
 	font-size: max(1.6vw,16px);
+	font-weight: 500;
 }
 
 .contentSection a {
