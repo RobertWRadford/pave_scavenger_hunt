@@ -151,36 +151,36 @@ footer a:hover {
 	word-wrap: break-word;
 	padding: 5%;
 	padding-top: 0;
-	line-height: max(2.4vw, 24px);
+	line-height: max(2.2vw, 22px);
 	width:80%;
 }
 
 .contentSection *:not(h1, h2, h3, h4) {
-	font-size: max(1.4vw,14px);
+	font-size: max(1.2vw,12px);
 }
 
 .contentSection h1 {
-	font-size: max(3vw,30px);
+	font-size: max(2.2vw,22px);
 }
 
 .contentSection h1 p{
-	font-size: max(3vw,30px);
+	font-size: max(2.2vw,22px);
 }
 
 .contentSection h2 {
-	font-size: max(2.2vw,22px);
+	font-size: max(1.8vw,18px);
 }
 
 .contentSection h2 p {
-	font-size: max(2.2vw,22px);
+	font-size: max(1.8vw,18px);
 }
 
 .contentSection h3 {
-	font-size: max(1.8vw,18px);
+	font-size: max(1.6vw,16px);
 }
 
 .contentSection h3 p {
-	font-size: max(1.8vw,18px);
+	font-size: max(1.6vw,16px);
 }
 
 .contentSection a {
