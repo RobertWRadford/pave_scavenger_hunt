@@ -35,8 +35,8 @@
     position: absolute;
     top: 50%;
     width: auto;
-    margin-top: -22px;
-    padding: 16px;
+    transform: translateY(-50%);
+    padding: max(1vw, 10px);
     color: white;
     font-weight: bold;
     transition: 0.6s ease;
