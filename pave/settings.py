@@ -69,7 +69,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'pavescavengerhunt@gmail.com'
 EMAIL_HOST_PASSWORD = env('EMAIL_PASS')
 EMAIL_PORT = 587
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
