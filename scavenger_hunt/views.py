@@ -21,7 +21,7 @@ def signup_view(request):
         form = SignUpForm(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
-            user.is_active = False
+            # user.is_active = False
             user.save()
             currentSite = get_current_site(request)
             subject = 'Activate Account'
