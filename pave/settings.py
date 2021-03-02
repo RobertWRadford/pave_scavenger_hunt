@@ -42,6 +42,7 @@ ALLOWED_HOSTS = env('ALLOWED_HOSTS').split(',')
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
+    'django_email_verification',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -51,12 +52,24 @@ INSTALLED_APPS = [
     'rest_framework',
 ]
 
+# def verified_callback(user):
+#     user.is_active = True
+
+# EMAIL_VERIFIED_CALLBACK = verified_callback
+# EMAIL_FROM_ADDRESS = 'noreply@pavescavengerhunt.com'
+# EMAIL_MAIL_SUBJECT = 'Confirm your email'
+# EMAIL_MAIL_HTML = 'activate_account_email.html'
+# EMAIL_MAIL_PLAIN = 'mail_body.txt'
+# EMAIL_TOKEN_LIFE = 60 * 60
+# EMAIL_PAGE_TEMPLATE = 'activate_account_sent.html'
+# EMAIL_PAGE_DOMAIN = 'https://pave-scavenger-hunt.herokuapp.com/'
+
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'pavescavengerhunt@gmail.com'
 EMAIL_HOST_PASSWORD = env('EMAIL_PASS')
 EMAIL_PORT = 587
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

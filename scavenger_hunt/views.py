@@ -14,6 +14,7 @@ from django.conf import settings
 from django.core.mail import send_mail, EmailMessage
 from django.contrib.auth.forms import AuthenticationForm
 from django.core.paginator import Paginator
+# from django_email_verification import send_email
 # Create your views here.
 def signup_view(request):
     if request.method == 'POST':
@@ -30,7 +31,6 @@ def signup_view(request):
                 'uid': urlsafe_base64_encode(force_bytes(user.pk)),#.decode(),
                 'token': activate_account_token.make_token(user),
             })
-
             cleaned_email = form.cleaned_data.get('email')
             email = EmailMessage(subject, message, to=[cleaned_email])
             email.send()
