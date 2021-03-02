@@ -42,7 +42,6 @@ ALLOWED_HOSTS = env('ALLOWED_HOSTS').split(',')
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
-    'django_email_verification',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
