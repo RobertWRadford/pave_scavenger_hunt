@@ -16,6 +16,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.core.paginator import Paginator
 # Create your views here.
 def signup_view(request):
+
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():

@@ -140,6 +140,7 @@ pythonenv*
 .mypy_cache/
 .dmypy.json
 dmypy.json
+scavenger-hunt-service-key.json
 
 # Pyre type checker
 .pyre/
