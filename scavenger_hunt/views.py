@@ -43,7 +43,8 @@ def signup_view(request):
                 except:
                     user.is_active = True
                     user.save()
-                    return redirect('login')
+                    login(request, user)
+                    return redirect('home')
     else:
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})

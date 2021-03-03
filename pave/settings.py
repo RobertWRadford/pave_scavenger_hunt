@@ -136,10 +136,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-# Heroku: Update database configuration from $DATABASE_URL.
-db_from_env = dj_database_url.config(conn_max_age=250)
-DATABASES['default'].update(db_from_env)
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
