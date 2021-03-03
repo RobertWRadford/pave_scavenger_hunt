@@ -53,11 +53,10 @@ INSTALLED_APPS = [
 
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'pavescavengerhunt@gmail.com'
+EMAIL_HOST_USER = 'pavescavengerhunt'
 EMAIL_HOST_PASSWORD = env('EMAIL_PASS')
 EMAIL_PORT = 587
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_USE_SSL=False
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

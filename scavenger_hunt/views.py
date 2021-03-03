@@ -37,9 +37,13 @@ def signup_view(request):
                 email.send()
                 return redirect('activate_account_sent')
             except:
-                user.is_active = True
-                user.save()
-                return redirect('login')
+                try:
+                    send_mail(subject, message, 'pavescavengerhunt@gmail.com', [cleaned_email,])
+                    return redirect('activate_account_sent')
+                except:
+                    user.is_active = True
+                    user.save()
+                    return redirect('login')
     else:
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
