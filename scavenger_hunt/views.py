@@ -34,10 +34,11 @@ def signup_view(request):
             cleaned_email = form.cleaned_data.get('email')
             email = EmailMessage(subject, message, to=[cleaned_email])
             try:
-                email.send(fail_silently=False)
+                email.send()
                 return redirect('activate_account_sent')
             except:
                 user.is_active = True
+                user.save()
                 return redirect('login')
     else:
         form = SignUpForm()
