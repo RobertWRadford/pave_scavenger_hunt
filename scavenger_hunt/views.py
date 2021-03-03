@@ -21,7 +21,7 @@ def signup_view(request):
         form = SignUpForm(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
-            # user.is_active = False
+            user.is_active = False
             user.save()
             currentSite = get_current_site(request)
             subject = 'Activate Account'
@@ -33,8 +33,12 @@ def signup_view(request):
             })
             cleaned_email = form.cleaned_data.get('email')
             email = EmailMessage(subject, message, to=[cleaned_email])
-            email.send(fail_silently=False)
-            return redirect('activate_account_sent')
+            try:
+                email.send(fail_silently=False)
+                return redirect('activate_account_sent')
+            except:
+                user.is_active = True
+                return redirect('login')
     else:
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
