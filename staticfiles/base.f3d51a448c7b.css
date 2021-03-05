@@ -25,19 +25,19 @@ footer a:hover {
 	color: #ffcb0b;
 }
 
-#bad_pass {
-	color: rgb(220,20,60);
+.bad_pass {
+	color: rgb(240,128,128);
 	text-align: center;
 	margin:auto;
-	margin-bottom: 3px;
-	background-color: rgb(240,128,128);
-	border: 3px solid rgb(220,20,60);
+	margin-top: 1vw;
+	margin-bottom: 1vw;
+	background-color: rgb(220,20,60);
+	border: 1px solid rgb(220,20,60);
+	border-radius: 25px;
 	word-wrap: break-word;
-	font-size: max(.6vw,6px);
-    border-radius: 15px;
-    width: max(80px,10%);
-    text-decoration: underline;
-    font-weight: 700;
+	padding: 5%;
+	padding-top: 0;
+	width:80%;
 }
 
 .hintReveal{

@@ -50,14 +50,18 @@ def signup_view(request):
     return render(request, 'signup.html', {'form': form})
 
 def login_view(request):
+    context = {}
     if request.method == 'POST':
         form = AuthenticationForm(request, data=request.POST)
         if form.is_valid():
             login(request, form.get_user())
             return redirect('home')
+        else:
+            context['incorrect'] = True
     else:
         form = AuthenticationForm()
-    return render(request, 'login.html', {'form': form})
+    context['form'] = form
+    return render(request, 'login.html', context)
 
 def logout_view(request):
     logout(request)
