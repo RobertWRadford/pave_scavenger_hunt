@@ -34,7 +34,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 SECURE_CONNECT = False if env('SSL_REDIRECT') == 'False' else True
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = SECURE_CONNECT
+DEBUG = False if SECURE_CONNECT else True
 
 ALLOWED_HOSTS = env('ALLOWED_HOSTS').split(',')
 
@@ -151,11 +151,17 @@ USE_L10N = True
 
 USE_TZ = True
 
+# Heroku: Update database configuration from $DATABASE_URL.
+db_from_env = dj_database_url.config(conn_max_age=250)
+DATABASES['default'].update(db_from_env)
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
