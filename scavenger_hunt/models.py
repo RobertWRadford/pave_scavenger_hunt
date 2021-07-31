@@ -70,10 +70,11 @@ class ChoiceQuestion(models.Model):
     answerTwo = models.CharField(max_length=200, help_text='Enter the second answer choice for the question/riddle.')
     answerThree = models.CharField(max_length=200, help_text='Enter the third answer choice for the question/riddle.')
     answerFour = models.CharField(max_length=200, help_text='Enter the fourth answer choice for the question/riddle.')
-    correctAnswer = models.CharField(max_length=200, help_text='Enter the answer to the question/riddle.')
+    answerFive = models.CharField(max_length=200, help_text='Enter the fifth answer choice for the question/riddle.')
+    answer = models.CharField(max_length=200, help_text='Enter the answer to the question/riddle.')
 
     class Meta:
-        ordering = ['question', 'correctAnswer']
+        ordering = ['question', 'answer']
 
     def __str__(self):
         """String for representing the Model object."""

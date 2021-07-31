@@ -19,7 +19,7 @@ class OpenQuestionAdmin(admin.ModelAdmin):
 
 @admin.register(ChoiceQuestion)
 class QuestionAdmin(admin.ModelAdmin):
-    list_display = ('question', 'correctAnswer',)
+    list_display = ('question', 'answer',)
 
 @admin.register(Location)
 class LocationAdmin(admin.ModelAdmin):

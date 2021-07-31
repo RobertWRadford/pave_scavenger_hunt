@@ -5,12 +5,12 @@
     {% for riddle in page_obj %}
         <h1>Scavenger Hunt</h1>
         <hr class="divider">
-        {% if riddle.question.intro %}
-            <p>{{riddle.question.intro|linebreaks}}</p>
+        {% if riddle.resolveType.intro %}
+            <p>{{riddle.resolveType.intro|linebreaks}}</p>
         {% endif %}
-        {% if riddle.question.album.all.count > 1 %}
+        {% if riddle.resolveType.album.all.count > 1 %}
             <div class='slideshow-container'>
-                {% for image in riddle.question.album.all %}
+                {% for image in riddle.resolveType.album.all %}
                     <div class="mySlides fade">
                         <img class='carouselImage' src="{{image.link}}" alt="UML diagram">
                     </div>
@@ -18,21 +18,34 @@
                 <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
                 <a class="next" onclick="plusSlides(1)">&#10095;</a>
             </div>
-        {% elif riddle.question.album.all.count %}
+        {% elif riddle.resolveType.album.all.count %}
             <div class='slideshow-container'>
                 <div class="mySlides fade">
-                    <img class='carouselImage' src="{{riddle.question.album.get.link}}" alt="UML diagram">
+                    <img class='carouselImage' src="{{riddle.resolveType.album.get.link}}" alt="UML diagram">
                 </div>
             </div>
         {% endif %}
-        <h3>{{riddle.question.question|linebreaks}}</h3>
+        <h3>{{riddle.resolveType.question|linebreaks}}</h3>
         <form class="answerForm" method="post">
             {% csrf_token %}
             <input name="questionno" type='hidden' value="{{riddle.pk}}">
-            <input name="answer" type="text" placeholder="Answer...">
+            {% if riddle.resolveType.answerOne %}
+                <input type="radio" id='one' name="answer" value="{{riddle.resolveType.answerOne}}">
+                <label for='one'>{{riddle.resolveType.answerOne}}</label>
+                <input type="radio" id='two' name="answer" value="{{riddle.resolveType.answerTwo}}">
+                <label for='two'>{{riddle.resolveType.answerTwo}}</label>
+                <input type="radio" id='three' name="answer" value="{{riddle.resolveType.answerThree}}">
+                <label for='three'>{{riddle.resolveType.answerThree}}</label>
+                <input type="radio" id='four' name="answer" value="{{riddle.resolveType.answerFour}}">
+                <label for='four'>{{riddle.resolveType.answerFour}}</label>
+                <input type="radio" id='five' name="answer" value="{{riddle.resolveType.answerFive}}">
+                <label for='five'>{{riddle.resolveType.answerFive}}</label>
+            {% else %}
+                <input name="answer" type="text" placeholder="Answer...">
+            {% endif %}
             <input type='Submit' value="Submit">
         </form>
-        {% for hint in riddle.question.hints.all %}
+        {% for hint in riddle.resolveType.hints.all %}
             <a class="hintReveal" onclick="showHint({{hint.pk}})">Click to reveal a{% if hint.helpfulness == 'a'%}n{%endif%} {{hint.full_helpfullness}} hint</a>
             <div id='{{hint.pk}}' class='hint'>
                 <p>{{hint.hint|linebreaks}}</p>

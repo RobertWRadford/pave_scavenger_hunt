@@ -94,37 +94,41 @@ def home_view(request):
     # Render the HTML template index.html with the data in the context variable
     return render(request, 'home.html', {})
 
-def start_view(request):
+def start_view(request, loc):
 
-    starting_location = StartingInstance.objects.get().location
+    instance = AnnArborStartingInstance if loc == 'AnnArbor' else CampusStartingInstance
+    starting_location = instance.objects.get().location
 
     context = {
         'starting_location': starting_location,
+        'loc': loc,
     }
 
     # Render the HTML template index.html with the data in the context variable
     return render(request, 'starting.html', context=context)
 
-def scavengerhunt_view(request):
+def scavengerhunt_view(request, loc):
 
+    questionSet = AnnArborQuestionInstance if loc == 'AnnArbor' else CampusQuestionInstance
     user_instance = Profile.objects.get(user=request.user)
+    completionSet = user_instance.aa_questions_completed if loc == 'AnnArbor' else user_instance.campus_questions_completed
 
     if 'answer' in request.POST:
-        question_answered = QuestionInstance.objects.get(pk=request.POST['questionno'])
-        if question_answered.question.answer.lower() == request.POST['answer'].lower():
-            user_instance.questions_completed.add(question_answered)
+        question_answered = questionSet.objects.get(pk=request.POST['questionno'])
+        if question_answered.resolveType.answer.lower() == request.POST['answer'].lower():
+            completionSet.add(question_answered)
             user_instance.save()
 
-    questions_answered = user_instance.questions_completed.all().count()
-    to_show = questions_answered+1 if questions_answered < QuestionInstance.objects.all().count() else questions_answered
-    available = QuestionInstance.objects.all().order_by('question_number')[:to_show] #thought: could index by a parameter to limit
+    questions_answered = completionSet.all().count()
+    to_show = questions_answered+1 if questions_answered < questionSet.objects.all().count() else questions_answered
+    available = questionSet.objects.all().order_by('question_number')[:to_show] #thought: could index by a parameter to limit
     paginator = Paginator(available, 1)
     if 'page' in request.GET:
         page_obj = paginator.get_page(request.GET['page'])
     else:
         page_obj = paginator.get_page(paginator.num_pages)
 
-    return render(request, 'questions.html', {'page_obj': page_obj, 'answered': questions_answered})
+    return render(request, 'questions.html', {'page_obj': page_obj, 'answered': questions_answered, 'loc': loc,})
 
 def extras_view(request):
     extras = ExternalLink.objects.all()
