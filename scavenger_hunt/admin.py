@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Image, ExternalLink, Hint, OpenQuestion, ChoiceQuestion, Location, StartingInstance, CampusQuestionInstance, AnnArborQuestionInstance, PaveMember, Profile, ExtraPageAbout
+from .models import Image, ExternalLink, Hint, OpenQuestion, ChoiceQuestion, Location, AnnArborStartingInstance, CampusStartingInstance, CampusQuestionInstance, AnnArborQuestionInstance, PaveMember, Profile, ExtraPageAbout
 # Register your models here.
 @admin.register(Image)
 class ImageAdmin(admin.ModelAdmin):
@@ -25,16 +25,20 @@ class QuestionAdmin(admin.ModelAdmin):
 class LocationAdmin(admin.ModelAdmin):
     list_display = ('address',)
 
-@admin.register(StartingInstance)
-class StartingInstanceAdmin(admin.ModelAdmin):
+@admin.register(AnnArborStartingInstance)
+class AnnArborStartingInstanceAdmin(admin.ModelAdmin):
+    list_display = ('__str__',)
+
+@admin.register(CampusStartingInstance)
+class CampusStartingInstanceAdmin(admin.ModelAdmin):
     list_display = ('__str__',)
 
 @admin.register(CampusQuestionInstance)
-class QuestionInstanceAdmin(admin.ModelAdmin):
+class CampusQuestionInstanceAdmin(admin.ModelAdmin):
     list_display = ('question_number', 'question')
 
 @admin.register(AnnArborQuestionInstance)
-class QuestionInstanceAdmin(admin.ModelAdmin):
+class AnnArborQuestionInstanceAdmin(admin.ModelAdmin):
     list_display = ('question_number', 'question')
 
 @admin.register(PaveMember)

@@ -90,7 +90,14 @@ class Location(models.Model):
         """String for representing the Model object."""
         return f'{self.address}'
 
-class StartingInstance(models.Model):
+class AnnArborStartingInstance(models.Model):
+
+    location = models.OneToOneField('Location', on_delete=models.SET_NULL, null=True)
+
+    def __str__(self):
+        return f'{self.location.address}'
+
+class CampusStartingInstance(models.Model):
 
     location = models.OneToOneField('Location', on_delete=models.SET_NULL, null=True)
 
