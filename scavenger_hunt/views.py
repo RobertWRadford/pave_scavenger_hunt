@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, reverse
-from .models import ExternalLink, Image, Hint, Question, Location, StartingInstance, QuestionInstance, PaveMember, Profile, ExtraPageAbout
+from .models import Image, ExternalLink, Hint, OpenQuestion, ChoiceQuestion, Location, StartingInstance, CampusQuestionInstance, AnnArborQuestionInstance, PaveMember, Profile, ExtraPageAbout
 from .tokens import activate_account_token
 from django.http import HttpResponse, HttpRequest
 from django.contrib.auth import login, authenticate, logout, tokens

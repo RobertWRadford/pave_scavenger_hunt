@@ -45,7 +45,7 @@ class Hint(models.Model):
         """String for representing the Model object."""
         return f'{self.hint}'
 
-class Question(models.Model):
+class OpenQuestion(models.Model):
 
     intro = models.TextField(help_text='Enter the introduction text for this question/riddle.', blank=True)
     album = models.ManyToManyField(Image, blank=True)
@@ -55,6 +55,25 @@ class Question(models.Model):
 
     class Meta:
         ordering = ['question', 'answer']
+
+    def __str__(self):
+        """String for representing the Model object."""
+        return f'{self.question}'
+
+class ChoiceQuestion(models.Model):
+
+    intro = models.TextField(help_text='Enter the introduction text for this question/riddle.', blank=True)
+    album = models.ManyToManyField(Image, blank=True)
+    question = models.TextField(help_text='Enter the prompt for the question/riddle.')
+    hints = models.ManyToManyField(Hint, blank=True)
+    answerOne = models.CharField(max_length=200, help_text='Enter the first answer choice for the question/riddle.')
+    answerTwo = models.CharField(max_length=200, help_text='Enter the second answer choice for the question/riddle.')
+    answerThree = models.CharField(max_length=200, help_text='Enter the third answer choice for the question/riddle.')
+    answerFour = models.CharField(max_length=200, help_text='Enter the fourth answer choice for the question/riddle.')
+    correctAnswer = models.CharField(max_length=200, help_text='Enter the answer to the question/riddle.')
+
+    class Meta:
+        ordering = ['question', 'correctAnswer']
 
     def __str__(self):
         """String for representing the Model object."""
@@ -78,16 +97,41 @@ class StartingInstance(models.Model):
     def __str__(self):
         return f'{self.location.address}'
 
-class QuestionInstance(models.Model):
+class CampusQuestionInstance(models.Model):
 
     question_number = models.IntegerField(help_text='Enter the number for the question', unique=True)
-    question = models.ForeignKey('Question', on_delete=models.CASCADE)
+    openQuestion = models.ForeignKey('OpenQuestion', on_delete=models.CASCADE, blank=True)
+    choiceQuestion = models.ForeignKey('ChoiceQuestion', on_delete=models.CASCADE, blank=True)
     location = models.ForeignKey('Location', on_delete=models.SET_NULL, null=True)
     directions = models.TextField(help_text='Enter directions from the current location to the answer location.', blank=True)
 
+    def resolveType(self):
+        return self.openQuestion if self.openQuestion else self.choiceQuestion
+    
+    def question(self):
+        return self.resolveType().question
+    
     def __str__(self):
         """String for representing the Model object."""
-        return f'{self.question_number}.) {self.question.question}'
+        return f'{self.question_number}.) {self.question()}'
+
+class AnnArborQuestionInstance(models.Model):
+
+    question_number = models.IntegerField(help_text='Enter the number for the question', unique=True)
+    openQuestion = models.ForeignKey('OpenQuestion', on_delete=models.CASCADE, blank=True)
+    choiceQuestion = models.ForeignKey('ChoiceQuestion', on_delete=models.CASCADE, blank=True)
+    location = models.ForeignKey('Location', on_delete=models.SET_NULL, null=True)
+    directions = models.TextField(help_text='Enter directions from the current location to the answer location.', blank=True)
+
+    def resolveType(self):
+        return self.openQuestion if self.openQuestion else self.choiceQuestion
+    
+    def question(self):
+        return self.resolveType().question
+    
+    def __str__(self):
+        """String for representing the Model object."""
+        return f'{self.question_number}.) {self.question()}'
 
 class PaveMember(models.Model):
 
@@ -109,7 +153,8 @@ class ExtraPageAbout(models.Model):
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     email_confirmed = models.BooleanField(default=False)
-    questions_completed = models.ManyToManyField(QuestionInstance, blank=True)
+    aa_questions_completed = models.ManyToManyField(AnnArborQuestionInstance, blank=True)
+    campus_questions_completed = models.ManyToManyField(CampusQuestionInstance, blank=True)
 
     def __str__(self):
         return f'{self.user.username}'
@@ -117,8 +162,11 @@ class Profile(models.Model):
     def getEmail(self):
         return f'{self.user.email}'
 
-    def questionsCompleted(self):
-        return f'{self.questions_completed.all().count()}'
+    def aaQuestionsCompleted(self):
+        return f'{self.aa_questions_completed.all().count()}'
+
+    def campusQuestionsCompleted(self):
+        return f'{self.campus_questions_completed.all().count()}'
 
 @receiver(post_save, sender=User)
 def update_user_profile(sender, instance, created, **kwargs):
