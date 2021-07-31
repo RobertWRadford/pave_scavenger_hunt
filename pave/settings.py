@@ -34,7 +34,9 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 SECURE_CONNECT = False if env('SSL_REDIRECT') == 'False' else True
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False if SECURE_CONNECT else True
+
+# DEBUG = False if SECURE_CONNECT else True
+DEBUG = True
 
 ALLOWED_HOSTS = env('ALLOWED_HOSTS').split(',')
 
