@@ -221,3 +221,7 @@ scavenger-hunt-service-key.json
 *.code-workspace
 
 # End of https://www.toptal.com/developers/gitignore/api/python,django,vscode
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
