@@ -108,8 +108,8 @@ class CampusStartingInstance(models.Model):
 class CampusQuestionInstance(models.Model):
 
     question_number = models.IntegerField(help_text='Enter the number for the question', unique=True)
-    openQuestion = models.ForeignKey('OpenQuestion', on_delete=models.CASCADE, blank=True)
-    choiceQuestion = models.ForeignKey('ChoiceQuestion', on_delete=models.CASCADE, blank=True)
+    openQuestion = models.ForeignKey('OpenQuestion', on_delete=models.CASCADE, blank=True, null=True)
+    choiceQuestion = models.ForeignKey('ChoiceQuestion', on_delete=models.CASCADE, blank=True, null=True)
     location = models.ForeignKey('Location', on_delete=models.SET_NULL, null=True)
     directions = models.TextField(help_text='Enter directions from the current location to the answer location.', blank=True)
 
@@ -126,8 +126,8 @@ class CampusQuestionInstance(models.Model):
 class AnnArborQuestionInstance(models.Model):
 
     question_number = models.IntegerField(help_text='Enter the number for the question', unique=True)
-    openQuestion = models.ForeignKey('OpenQuestion', on_delete=models.CASCADE, blank=True)
-    choiceQuestion = models.ForeignKey('ChoiceQuestion', on_delete=models.CASCADE, blank=True)
+    openQuestion = models.ForeignKey('OpenQuestion', on_delete=models.CASCADE, blank=True, null=True)
+    choiceQuestion = models.ForeignKey('ChoiceQuestion', on_delete=models.CASCADE, blank=True, null=True)
     location = models.ForeignKey('Location', on_delete=models.SET_NULL, null=True)
     directions = models.TextField(help_text='Enter directions from the current location to the answer location.', blank=True)
 
