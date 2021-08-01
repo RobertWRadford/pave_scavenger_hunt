@@ -36,7 +36,7 @@
                 {% if request.user.is_staff %}
                     <a class="navBarItem standalone" href="./admin">{{ request.user.username }}(admin)</a>
                 {% else %}
-                    {{ request.user.username }}
+                    <span class="navBarItem standalone">{{ request.user.username }}</span>
                 {% endif %}
                  |</strong></span> <a class="navBarItem" href="{% url 'logout' %}">Log Out</a>
         {% else %}
