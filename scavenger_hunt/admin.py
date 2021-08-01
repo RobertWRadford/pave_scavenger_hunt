@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Image, ExternalLink, Hint, OpenQuestion, ChoiceQuestion, Location, AnnArborStartingInstance, CampusStartingInstance, CampusQuestionInstance, AnnArborQuestionInstance, PaveMember, Profile, ExtraPageAbout
+from .models import Image, HomePageContent, ExternalLink, Hint, OpenQuestion, ChoiceQuestion, Location, AnnArborStartingInstance, CampusStartingInstance, CampusQuestionInstance, AnnArborQuestionInstance, PaveMember, Profile, ExtraPageAbout
 # Register your models here.
 @admin.register(Image)
 class ImageAdmin(admin.ModelAdmin):
@@ -52,3 +52,8 @@ class ProfileAdmin(admin.ModelAdmin):
 @admin.register(ExtraPageAbout)
 class ExtraPageAboutAdmin(admin.ModelAdmin):
 	list_display = ('__str__',)
+
+
+@admin.register(HomePageContent)
+class HomePageContentAdmin(admin.ModelAdmin):
+    list_display = ('__str__',)

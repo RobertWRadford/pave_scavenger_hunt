@@ -158,6 +158,16 @@ class ExtraPageAbout(models.Model):
     def __str__(self):
         return f'{self.description[:25]}...'
 
+class HomePageContent(models.Model):
+
+    image = models.ForeignKey('Image', on_delete=models.SET_NULL, null=True, blank=True)
+    description = models.TextField(help_text='Enter the description block for the home page', default='No additional information')
+    instructions = models.TextField(help_text='Enter the instructions block for the home page', default='No additional information')
+
+    def __str__(self):
+        return f'{self.description[:25]}...'
+
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     email_confirmed = models.BooleanField(default=False)

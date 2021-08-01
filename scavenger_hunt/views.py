@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, reverse
-from .models import Image, ExternalLink, Hint, OpenQuestion, ChoiceQuestion, Location, AnnArborStartingInstance, CampusStartingInstance, CampusQuestionInstance, AnnArborQuestionInstance, PaveMember, Profile, ExtraPageAbout
+from .models import Image, HomePageContent, ExternalLink, Hint, OpenQuestion, ChoiceQuestion, Location, AnnArborStartingInstance, CampusStartingInstance, CampusQuestionInstance, AnnArborQuestionInstance, PaveMember, Profile, ExtraPageAbout
 from .tokens import activate_account_token
 from django.http import HttpResponse, HttpRequest
 from django.contrib.auth import login, authenticate, logout, tokens
@@ -92,7 +92,8 @@ def activate_account_invalid_view(request):
 def home_view(request):
     """View function for home page of site."""
     # Render the HTML template index.html with the data in the context variable
-    return render(request, 'home.html', {})
+    content = HomePageContent.objects.get()
+    return render(request, 'home.html', {'image': content.image.link, 'about': content.description, 'instructions': content.instructions,})
 
 def start_view(request, loc):
 
