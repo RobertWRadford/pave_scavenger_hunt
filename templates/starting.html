@@ -26,7 +26,7 @@
                 </div>
             </div>
         {% endif %}
-        <form action="{% url 'scavengerhunt' '{{loc}}' %}" method="post">
+        <form action="{% url 'scavengerhunt' {{loc}} %}" method="post">
             {% csrf_token %}
             <input type="submit" value="Start">
         </form>
