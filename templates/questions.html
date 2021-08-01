@@ -34,12 +34,22 @@
                 <label for='one'>{{riddle.resolveType.answerOne}}</label>
                 <input type="radio" id='two' name="answer" value="{{riddle.resolveType.answerTwo}}">
                 <label for='two'>{{riddle.resolveType.answerTwo}}</label>
-                <input type="radio" id='three' name="answer" value="{{riddle.resolveType.answerThree}}">
-                <label for='three'>{{riddle.resolveType.answerThree}}</label>
-                <input type="radio" id='four' name="answer" value="{{riddle.resolveType.answerFour}}">
-                <label for='four'>{{riddle.resolveType.answerFour}}</label>
-                <input type="radio" id='five' name="answer" value="{{riddle.resolveType.answerFive}}">
-                <label for='five'>{{riddle.resolveType.answerFive}}</label>
+                {% if riddle.resolveType.answerThree %}
+                    <input type="radio" id='three' name="answer" value="{{riddle.resolveType.answerThree}}">
+                    <label for='three'>{{riddle.resolveType.answerThree}}</label>
+                {% endif %}
+                {% if riddle.resolveType.answerFour %}
+                    <input type="radio" id='four' name="answer" value="{{riddle.resolveType.answerFour}}">
+                    <label for='four'>{{riddle.resolveType.answerFour}}</label>
+                {% endif %}
+                {% if riddle.resolveType.answerFive %}
+                    <input type="radio" id='five' name="answer" value="{{riddle.resolveType.answerFive}}">
+                    <label for='five'>{{riddle.resolveType.answerFive}}</label>
+                {% endif %}
+                {% if riddle.resolveType.answerSix %}
+                    <input type="radio" id='six' name="answer" value="{{riddle.resolveType.answerSix}}">
+                    <label for='six'>{{riddle.resolveType.answerSix}}</label>
+                {% endif %}
             {% else %}
                 <input name="answer" type="text" placeholder="Answer...">
             {% endif %}

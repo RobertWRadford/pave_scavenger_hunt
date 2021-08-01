@@ -47,10 +47,10 @@ class Hint(models.Model):
 
 class OpenQuestion(models.Model):
 
-    intro = models.TextField(help_text='Enter the introduction text for this question/riddle.', blank=True)
-    album = models.ManyToManyField(Image, blank=True)
+    intro = models.TextField(help_text='Enter the introduction text for this question/riddle.', blank=True, null=True)
+    album = models.ManyToManyField(Image, blank=True, null=True)
     question = models.TextField(help_text='Enter the prompt for the question/riddle.')
-    hints = models.ManyToManyField(Hint, blank=True)
+    hints = models.ManyToManyField(Hint, blank=True, null=True)
     answer = models.CharField(max_length=200, help_text='Enter the answer to the question/riddle.')
 
     class Meta:
@@ -62,15 +62,16 @@ class OpenQuestion(models.Model):
 
 class ChoiceQuestion(models.Model):
 
-    intro = models.TextField(help_text='Enter the introduction text for this question/riddle.', blank=True)
-    album = models.ManyToManyField(Image, blank=True)
+    intro = models.TextField(help_text='Enter the introduction text for this question/riddle.', blank=True, null=True)
+    album = models.ManyToManyField(Image, blank=True, null=True)
     question = models.TextField(help_text='Enter the prompt for the question/riddle.')
-    hints = models.ManyToManyField(Hint, blank=True)
+    hints = models.ManyToManyField(Hint, blank=True, null=True)
     answerOne = models.CharField(max_length=200, help_text='Enter the first answer choice for the question/riddle.')
-    answerTwo = models.CharField(max_length=200, help_text='Enter the second answer choice for the question/riddle.')
-    answerThree = models.CharField(max_length=200, help_text='Enter the third answer choice for the question/riddle.')
-    answerFour = models.CharField(max_length=200, help_text='Enter the fourth answer choice for the question/riddle.')
-    answerFive = models.CharField(max_length=200, help_text='Enter the fifth answer choice for the question/riddle.')
+    answerTwo = models.CharField(max_length=200, help_text='Enter the second answer choice for the question/riddle.', blank=True, null=True)
+    answerThree = models.CharField(max_length=200, help_text='Enter the third answer choice for the question/riddle.', blank=True, null=True)
+    answerFour = models.CharField(max_length=200, help_text='Enter the fourth answer choice for the question/riddle.', blank=True, null=True)
+    answerFive = models.CharField(max_length=200, help_text='Enter the fifth answer choice for the question/riddle.', blank=True, null=True)
+    answerSix = models.CharField(max_length=200, help_text='Enter the sixth answer choice for the question/riddle.', blank=True, null=True)
     answer = models.CharField(max_length=200, help_text='Enter the answer to the question/riddle.')
 
     class Meta:
@@ -83,9 +84,9 @@ class ChoiceQuestion(models.Model):
 class Location(models.Model):
 
     address = models.CharField(max_length=200, help_text='Enter the address of the location.')
-    description = models.TextField(help_text='Enter a description of the location and it\'s significance.', blank=True)
-    album = models.ManyToManyField(Image, blank=True)
-    link = models.URLField(max_length=200, help_text='Enter the target URL.', blank=True)
+    description = models.TextField(help_text='Enter a description of the location and it\'s significance.', blank=True, null=True)
+    album = models.ManyToManyField(Image, blank=True, null=True)
+    link = models.URLField(max_length=200, help_text='Enter the target URL.', blank=True, null=True)
 
     def __str__(self):
         """String for representing the Model object."""
@@ -111,7 +112,7 @@ class CampusQuestionInstance(models.Model):
     openQuestion = models.ForeignKey('OpenQuestion', on_delete=models.CASCADE, blank=True, null=True)
     choiceQuestion = models.ForeignKey('ChoiceQuestion', on_delete=models.CASCADE, blank=True, null=True)
     location = models.ForeignKey('Location', on_delete=models.SET_NULL, null=True)
-    directions = models.TextField(help_text='Enter directions from the current location to the answer location.', blank=True)
+    directions = models.TextField(help_text='Enter directions from the current location to the answer location.', blank=True, null=True)
 
     def resolveType(self):
         return self.openQuestion if self.openQuestion else self.choiceQuestion
@@ -129,7 +130,7 @@ class AnnArborQuestionInstance(models.Model):
     openQuestion = models.ForeignKey('OpenQuestion', on_delete=models.CASCADE, blank=True, null=True)
     choiceQuestion = models.ForeignKey('ChoiceQuestion', on_delete=models.CASCADE, blank=True, null=True)
     location = models.ForeignKey('Location', on_delete=models.SET_NULL, null=True)
-    directions = models.TextField(help_text='Enter directions from the current location to the answer location.', blank=True)
+    directions = models.TextField(help_text='Enter directions from the current location to the answer location.', blank=True, null=True)
 
     def resolveType(self):
         return self.openQuestion if self.openQuestion else self.choiceQuestion
@@ -144,9 +145,9 @@ class AnnArborQuestionInstance(models.Model):
 class PaveMember(models.Model):
 
     name = models.CharField(max_length=75, help_text='Enter the members name.')
-    link = models.URLField(max_length=200, help_text='Enter the target images hosted URL. Check the live site to make sure that the image was accessible.', blank=True)
-    bio = models.TextField(help_text='Enter a short bio of the member.', blank=True)
-    email = models.EmailField(max_length=254, help_text='Enter the members email for contact.', blank=True)
+    link = models.URLField(max_length=200, help_text='Enter the target images hosted URL. Check the live site to make sure that the image was accessible.', blank=True, null=True)
+    bio = models.TextField(help_text='Enter a short bio of the member.', blank=True, null=True)
+    email = models.EmailField(max_length=254, help_text='Enter the members email for contact.', blank=True, null=True)
 
     def __str__(self):
         return f'{self.name}'
@@ -171,8 +172,8 @@ class HomePageContent(models.Model):
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     email_confirmed = models.BooleanField(default=False)
-    aa_questions_completed = models.ManyToManyField(AnnArborQuestionInstance, blank=True)
-    campus_questions_completed = models.ManyToManyField(CampusQuestionInstance, blank=True)
+    aa_questions_completed = models.ManyToManyField(AnnArborQuestionInstance, blank=True, null=True)
+    campus_questions_completed = models.ManyToManyField(CampusQuestionInstance, blank=True, null=True)
 
     def __str__(self):
         return f'{self.user.username}'
