@@ -2,6 +2,11 @@ body{
     background-image: url("https://www.commonapp.org/static/1c588201d2773604b235f6e2aa423c67/university-michigan_439.jpg");
     color: white;
     margin:0;
+    padding: 0;
+}
+
+p {
+	font-family: 'Nunito', sans-serif;
 }
 
 img {
@@ -93,7 +98,7 @@ footer a:hover {
 	}
 
 	.navBarItem.standalone {
-		padding-left: 5vw;
+		padding-left: 3vw;
 	}
 
 	.profileName {
@@ -162,16 +167,15 @@ footer a:hover {
 	color: #ffcb0b;
 	text-align: center;
 	margin:auto;
-	margin-top: 5vw;
+	margin-top: max(2%, 10px);
 	margin-bottom: 3vw;
 	background-color: rgba(0,50,106,0.80);
 	border: 1px solid white;
 	border-radius: 25px;
 	word-wrap: break-word;
-	padding: 5%;
-	padding-top: 0;
+	padding: 1% 10%;
 	line-height: max(2.2vw, 22px);
-	width:80%;
+	width: max(75%, 325px);
 }
 
 .contentSection *:not(h1, h2, h3, h4) {
@@ -180,6 +184,7 @@ footer a:hover {
 
 .contentSection h1 {
 	font-size: max(2.2vw,22px);
+	margin: 1% 0;
 }
 
 .contentSection h1 p{
@@ -294,13 +299,14 @@ input[type=submit]:hover {
 }
 
 .divider {
-    width:80%;
+    width:95%;
     margin:auto;
     border-radius: 25px;
-    margin-top: max(1.5vw, 15px);
+    margin-top: max(1vw, 10px);
+    margin-bottom: max(1vw, 10px);
 }
 .smaller.divider {
-    width:40%;
-    margin-top: 25px;
-    margin-bottom: 25px;
+    width:35%;
+    margin-top: max(1vw, 10px);
+    margin-bottom: max(1vw, 10px);
 }

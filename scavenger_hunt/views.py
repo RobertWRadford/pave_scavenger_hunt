@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, reverse
-from .models import Image, HomePageContent, ExternalLink, Hint, OpenQuestion, ChoiceQuestion, Location, AnnArborStartingInstance, CampusStartingInstance, CampusQuestionInstance, AnnArborQuestionInstance, PaveMember, Profile, ExtraPageAbout
+from .models import Image, HomePageContent, ExternalLink, Hint, OpenQuestion, ChoiceQuestion, Location, AnnArborStartingInstance, CampusStartingInstance, CampusQuestionInstance, AnnArborQuestionInstance, PaveMember, Profile, ExtraPageAbout, AnnArborConclusion, CampusConclusion
 from .tokens import activate_account_token
 from django.http import HttpResponse, HttpRequest
 from django.contrib.auth import login, authenticate, logout, tokens
@@ -113,6 +113,9 @@ def scavengerhunt_view(request, loc):
     questionSet = AnnArborQuestionInstance if loc == 'AnnArbor' else CampusQuestionInstance
     user_instance = Profile.objects.get(user=request.user)
     completionSet = user_instance.aa_questions_completed if loc == 'AnnArbor' else user_instance.campus_questions_completed
+    conclusion = AnnArborConclusion if loc == 'AnnArbor' else CampusConclusion
+
+    context = {'loc': loc, 'coclusion': conclusion,}
 
     if 'answer' in request.POST:
         question_answered = questionSet.objects.get(pk=request.POST['questionno'])
@@ -120,6 +123,8 @@ def scavengerhunt_view(request, loc):
         if questionInstance.answer.lower() == request.POST['answer'].lower():
             completionSet.add(question_answered)
             user_instance.save()
+        else:
+            context['incorrect'] = True
 
     questions_answered = completionSet.all().count()
     to_show = questions_answered+1 if questions_answered < questionSet.objects.all().count() else questions_answered
@@ -127,10 +132,18 @@ def scavengerhunt_view(request, loc):
     paginator = Paginator(available, 1)
     if 'page' in request.GET:
         page_obj = paginator.get_page(request.GET['page'])
+        context['pageno'] = request.GET['page']
+    elif 'page' in request.POST:
+        page_obj = paginator.get_page(request.POST['page'])
+        context['pageno'] = request.POST['page']
     else:
         page_obj = paginator.get_page(paginator.num_pages)
+        context['pageno'] = paginator.num_pages
 
-    return render(request, 'questions.html', {'page_obj': page_obj, 'answered': questions_answered, 'loc': loc,})
+    context['answered'] = questions_answered
+    context['page_obj'] = page_obj
+
+    return render(request, 'questions.html', context)
 
 def extras_view(request):
     extras = ExternalLink.objects.all()

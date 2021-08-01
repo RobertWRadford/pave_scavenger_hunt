@@ -18,6 +18,7 @@ psycopg2-binary = "^2.8.6"
 django-email-verification = "^0.1.0"
 google-api-python-client = "^1.12.8"
 django-livereload = "^1.7"
+django-livereload-server = "^0.3.2"
 
 [tool.poetry.dev-dependencies]
 

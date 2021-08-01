@@ -29,6 +29,7 @@
         <form class="answerForm" method="post">
             {% csrf_token %}
             <input name="questionno" type='hidden' value="{{riddle.pk}}">
+            <input type="hidden" name="page" value="{{pageno}}">
             {% if riddle.resolveType.answerOne %}
                 <input type="radio" id='one' name="answer" value="{{riddle.resolveType.answerOne}}">
                 <label for='one'>{{riddle.resolveType.answerOne}}</label>
@@ -51,7 +52,10 @@
                     <label for='six'>{{riddle.resolveType.answerSix}}</label>
                 {% endif %}
             {% else %}
-                <input name="answer" type="text" placeholder="Answer...">
+                <input {%if incorrect%}class='incorrectAnswer'{%endif%} name="answer" type="text" placeholder="Answer...">
+            {% endif %}
+            {% if incorrect %}
+                <p class='incorrectAnswer'>Incorrect!</p>
             {% endif %}
             <input type='Submit' value="Submit">
         </form>
@@ -88,6 +92,11 @@
                 <h3>Directions</h3>
                 <p>{{riddle.directions|linebreaks}}</p>
             {%endif%}
+            {% if forloop.last %}
+                <hr class="smaller divider">
+                <h3>Congratulations!</h3>
+                <p>{{conclusion.text|linebreaks}}</p>
+            {% endif %}
             {%if riddle.location.link%}
                 <hr class="smaller divider">
                 <a href="{{riddle.location.link}}" target="_blank" rel="noopener noreferrer">See more about this location</a>
