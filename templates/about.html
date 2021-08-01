@@ -10,16 +10,22 @@
     <h1>Members</h1>
     {% for member in members %}
       <hr class="smaller divider">
-    	<h2>{{member.name}}</h2>
-    	{% if member.link %}
-      	<img class="memberPhoto" src="{{member.link}}">
-      {% endif %}
-      {% if member.bio %}
-      	<p>{{member.bio|linebreaks}}</p>
-      {% endif %}
-      {% if member.email %}	
-      	<h3>{{member.email}}</h3>
-      {% endif %}
+      <div class='aboutMember'>
+        <div class='aboutLeftBox'>
+          <h2>{{member.name}}</h2>
+          {% if member.link %}
+            <img class="memberPhoto" src="{{member.link}}">
+          {% endif %}
+          {% if member.email %} 
+            <h3>{{member.email}}</h3>
+          {% endif %}
+        </div>
+        <div class="aboutRightBox">
+          {% if member.bio %}
+          	<p>{{member.bio|linebreaks}}</p>
+          {% endif %}
+        </div>
+      </div>
     {% endfor %}
   </section>
 {% endblock %}

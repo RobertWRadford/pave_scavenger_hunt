@@ -3,6 +3,7 @@ body{
     color: white;
     margin:0;
     padding: 0;
+    word-break: break-word;
 }
 
 p {
@@ -292,10 +293,38 @@ input[type=submit]:hover {
 	transform: translateX(-50%);
 }
 
+.aboutMember {
+	display: grid;
+	width: 100%;
+	grid-template-columns: 40% 60%;
+}
+
+.aboutLeftBox {
+	display: flex;
+	flex-direction: column;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    padding: 0 5%;
+}
+
+.aboutRightBox {
+	display: flex;
+	align-items: center;
+	text-align: center;
+	width: 100%;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    padding: 5px;
+}
+
 .memberPhoto{
-	width: max(25%, 100px);
+	width: max(60%, 90px);
     border-radius: 10% 30%;
-    border: solid 4px #ffcb0b;
+    border: solid max(.3vw, 3px) #ffcb0b;
 }
 
 .divider {
