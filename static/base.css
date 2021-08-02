@@ -19,6 +19,7 @@ footer {
 	text-align: center;
 	font-size: max(10px, 1vw);
 	padding-bottom: 5px;
+	margin-top: max(6vw, 60px);
 	text-shadow: 1px 1px rgb(0,0,0),
 				-1px -1px rgb(0,0,0);
 }

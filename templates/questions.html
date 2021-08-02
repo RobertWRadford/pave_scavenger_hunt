@@ -34,34 +34,34 @@
                 <div class="radioAnswers">
                     <input type="hidden" name="answer" value=''>
                     <div class="radioOption">
-                        <input type="radio" onclick='updateAns('{{riddle.resolveType.answerOne}}')" id='one' name="answerChoice" value="{{riddle.resolveType.answerOne}}">
+                        <input type="radio" onchange="updateAns('{{riddle.resolveType.answerOne}}')" id='one' name="answerChoice" value="{{riddle.resolveType.answerOne}}">
                         <label for='one'>{{riddle.resolveType.answerOne}}</label>
                     </div>
                     <div class="radioOption">
-                        <input type="radio" onclick="updateAns('{{riddle.resolveType.answerTwo}}')" id='two' name="answerChoice" value="{{riddle.resolveType.answerTwo}}">
+                        <input type="radio" onchange="updateAns('{{riddle.resolveType.answerTwo}}')" id='two' name="answerChoice" value="{{riddle.resolveType.answerTwo}}">
                         <label for='two'>{{riddle.resolveType.answerTwo}}</label>
                     </div>
                     {% if riddle.resolveType.answerThree %}
                         <div class="radioOption">
-                            <input type="radio" onclick="updateAns('{{riddle.resolveType.answerThree}}')" id='three' name="answerChoice" value="{{riddle.resolveType.answerThree}}">
+                            <input type="radio" onchange="updateAns('{{riddle.resolveType.answerThree}}')" id='three' name="answerChoice" value="{{riddle.resolveType.answerThree}}">
                             <label for='three'>{{riddle.resolveType.answerThree}}</label>
                         </div>
                     {% endif %}
                     {% if riddle.resolveType.answerFour %}
                         <div class="radioOption">
-                            <input type="radio" onclick="updateAns('{{riddle.resolveType.answerFour}}')" id='four' name="answerChoice" value="{{riddle.resolveType.answerFour}}">
+                            <input type="radio" onchange="updateAns('{{riddle.resolveType.answerFour}}')" id='four' name="answerChoice" value="{{riddle.resolveType.answerFour}}">
                             <label for='four'>{{riddle.resolveType.answerFour}}</label>
                         </div>
                     {% endif %}
                     {% if riddle.resolveType.answerFive %}
                         <div class="radioOption">        
-                            <input type="radio" onclick="updateAns('{{riddle.resolveType.answerFive}}')" id='five' name="answerChoice" value="{{riddle.resolveType.answerFive}}">
+                            <input type="radio" onchange="updateAns('{{riddle.resolveType.answerFive}}')" id='five' name="answerChoice" value="{{riddle.resolveType.answerFive}}">
                             <label for='five'>{{riddle.resolveType.answerFive}}</label>
                         </div>
                     {% endif %}
                     {% if riddle.resolveType.answerSix %}
                         <div class="radioOption">
-                            <input type="radio" onclick="updateAns('{{riddle.resolveType.answerSix}}')" id='six' name="answerChoice" value="{{riddle.resolveType.answerSix}}">
+                            <input type="radio" onchange="updateAns('{{riddle.resolveType.answerSix}}')" id='six' name="answerChoice" value="{{riddle.resolveType.answerSix}}">
                             <label for='six'>{{riddle.resolveType.answerSix}}</label>
                         </div>
                     {% endif %}
