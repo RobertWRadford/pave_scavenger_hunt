@@ -120,7 +120,8 @@ def scavengerhunt_view(request, loc):
     if 'answer' in request.POST:
         question_answered = questionSet.objects.get(pk=request.POST['questionno'])
         questionInstance = question_answered.resolveType()
-        if questionInstance.answer.lower() == request.POST['answer'].lower():
+        answers = questionInstance.answer.lower().split(';')
+        if request.POST['answer'].lower() in answers:
             completionSet.add(question_answered)
             user_instance.save()
         else:

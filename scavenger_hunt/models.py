@@ -144,6 +144,7 @@ class AnnArborQuestionInstance(models.Model):
 
 class AnnArborConclusion(models.Model):
 
+    link = models.URLField(max_length=200, help_text='Enter the target images hosted URL. Check the live site to make sure that the image was accessible.', blank=True, null=True)
     text = models.TextField(help_text='Enter the text block for the congratulations piece', default='No additional information')
 
     def __str__(self):
@@ -151,6 +152,7 @@ class AnnArborConclusion(models.Model):
 
 class CampusConclusion(models.Model):
 
+    link = models.URLField(max_length=200, help_text='Enter the target images hosted URL. Check the live site to make sure that the image was accessible.', blank=True, null=True)
     text = models.TextField(help_text='Enter the text block for the congratulations piece', default='No additional information')
 
     def __str__(self):
