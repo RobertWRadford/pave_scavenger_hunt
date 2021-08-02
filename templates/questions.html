@@ -81,8 +81,13 @@
             </div>
         {% endfor %}
         {% if answered >= page_obj.number %}
-            <hr class="divider">
+            <hr class="smaller divider">
             <h2>Correct!</h2>
+            {% if riddle.resolveType.explanation %}
+                <p>{{riddle.resolveType.explanation}}</p>
+            {% endif %}
+            <hr class="divider">
+            <h2>Next Location</h2>
             <h3>{{riddle.location.address}}</h3>
             {% if riddle.location.album.all.count > 1 %}
                 <div class='slideshow-container'>

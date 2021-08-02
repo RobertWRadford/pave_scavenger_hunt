@@ -52,6 +52,7 @@ class OpenQuestion(models.Model):
     question = models.TextField(help_text='Enter the prompt for the question/riddle.')
     hints = models.ManyToManyField(Hint, blank=True)
     answer = models.CharField(max_length=200, help_text='Enter the answer to the question/riddle.')
+    explanation = models.TextField(help_text='Enter the explanation for the answer to this question/riddle.', blank=True, null=True)
 
     class Meta:
         ordering = ['question', 'answer']
@@ -73,6 +74,7 @@ class ChoiceQuestion(models.Model):
     answerFive = models.CharField(max_length=200, help_text='Enter the fifth answer choice for the question/riddle.', blank=True, null=True)
     answerSix = models.CharField(max_length=200, help_text='Enter the sixth answer choice for the question/riddle.', blank=True, null=True)
     answer = models.CharField(max_length=200, help_text='Enter the answer to the question/riddle.')
+    explanation = models.TextField(help_text='Enter the explanation for the answer to this question/riddle.', blank=True, null=True)
 
     class Meta:
         ordering = ['question', 'answer']
