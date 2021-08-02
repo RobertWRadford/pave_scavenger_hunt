@@ -370,16 +370,18 @@ input[type=submit]:hover {
 }
 
 .radioAnswers {
-	border: solid max(.2vw, 2px) #ffcb0b;
-	border-radius: 15px;
-	display: flex;
-	flex-direction: column;
+    border: solid max(.2vw, 2px) #ffcb0b;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
     align-content: center;
     align-items: flex-start;
     justify-content: center;
-    width: 50%;
+    width: max(60%, 280px);
     padding: 5px;
-    margin: max(1vw, 10px) 25%;
+    margin: auto;
+    margin-top: max(1vw, 10px);
+    margin-bottom: max(1vw, 10px);
     background-color: rgba(0,50,106,0.80);
 }
 
