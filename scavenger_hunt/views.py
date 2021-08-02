@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, reverse
-from .models import Image, HomePageContent, ExternalLink, Hint, OpenQuestion, ChoiceQuestion, Location, AnnArborStartingInstance, CampusStartingInstance, CampusQuestionInstance, AnnArborQuestionInstance, PaveMember, Profile, ExtraPageAbout, AnnArborConclusion, CampusConclusion
+from .models import Image, HomePageContent, CampusExternalLink, AnnArborExternalLink, Hint, OpenQuestion, ChoiceQuestion, Location, AnnArborStartingInstance, CampusStartingInstance, CampusQuestionInstance, AnnArborQuestionInstance, PaveMember, Profile, ExtraPageAbout, AnnArborConclusion, CampusConclusion
 from .tokens import activate_account_token
 from django.http import HttpResponse, HttpRequest
 from django.contrib.auth import login, authenticate, logout, tokens
@@ -147,9 +147,10 @@ def scavengerhunt_view(request, loc):
     return render(request, 'questions.html', context)
 
 def extras_view(request):
-    extras = ExternalLink.objects.all()
+    aa_extras = AnnArborExternalLink.objects.all()
+    campus_extras = CampusExternalLink.objects.all()
     about = ExtraPageAbout.objects.get()
-    return render(request, 'extras.html', {'extras': extras, 'aboutExtras': about})
+    return render(request, 'extras.html', {'aa_extras': aa_extras, 'aboutExtras': about, 'campus_extras': campus_extras,})
 
 def about_view(request):
     members = PaveMember.objects.all()

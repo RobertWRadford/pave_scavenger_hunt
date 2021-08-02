@@ -14,7 +14,18 @@ class Image(models.Model):
         """String for representing the Model object."""
         return f'{self.title}'
 
-class ExternalLink(models.Model):
+class AnnArborExternalLink(models.Model):
+
+    name = models.CharField(max_length=200, help_text='Enter the text you want to appear with the hyperlink.')
+    link = models.URLField(max_length=200, help_text='Enter the target URL.')
+    photo = models.URLField(max_length=200, help_text='Enter the target images hosted URL. Check the live site to make sure that the image was accessible.', blank=True)
+    description = models.TextField(help_text='Enter a description of the location.', blank=True)
+
+    def __str__(self):
+        """String for representing the Model object."""
+        return f'{self.name}'
+
+class CampusExternalLink(models.Model):
 
     name = models.CharField(max_length=200, help_text='Enter the text you want to appear with the hyperlink.')
     link = models.URLField(max_length=200, help_text='Enter the target URL.')

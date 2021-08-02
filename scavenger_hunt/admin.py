@@ -1,12 +1,16 @@
 from django.contrib import admin
-from .models import Image, HomePageContent, ExternalLink, Hint, OpenQuestion, ChoiceQuestion, Location, AnnArborStartingInstance, CampusStartingInstance, CampusQuestionInstance, AnnArborQuestionInstance, PaveMember, Profile, ExtraPageAbout, AnnArborConclusion, CampusConclusion
+from .models import Image, HomePageContent, CampusExternalLink, AnnArborExternalLink, Hint, OpenQuestion, ChoiceQuestion, Location, AnnArborStartingInstance, CampusStartingInstance, CampusQuestionInstance, AnnArborQuestionInstance, PaveMember, Profile, ExtraPageAbout, AnnArborConclusion, CampusConclusion
 # Register your models here.
 @admin.register(Image)
 class ImageAdmin(admin.ModelAdmin):
     list_display = ('title',)
 
-@admin.register(ExternalLink)
-class ExternalLinkAdmin(admin.ModelAdmin):
+@admin.register(CampusExternalLink)
+class CampusExternalLinkAdmin(admin.ModelAdmin):
+    list_display = ('name', 'link',)
+
+@admin.register(AnnArborExternalLink)
+class AnnArborExternalLinkAdmin(admin.ModelAdmin):
     list_display = ('name', 'link',)
 
 @admin.register(Hint)

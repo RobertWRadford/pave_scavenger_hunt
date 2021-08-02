@@ -5,7 +5,21 @@
   	<h1>Extras</h1>
     <hr class="smaller divider">
     <p>{{aboutExtras.description|linebreaks}}</p>
-    {% for extra in extras %}
+    <hr class="divider">
+    <h2>Campus Extras</h2>
+    {% for extra in campus_extras %}
+      <hr class="smaller divider">
+      <a href='{{extra.link}}' target="_blank" rel="noopener noreferrer">{{extra.name}}</a>
+      {% if extra.photo %}
+        <img class="extraimg fade" src="{{extra.photo}}">
+      {% endif %}
+      {% if extra.description %}
+        <p>{{extra.description|linebreaks}}</p>
+      {% endif %}
+    {% endfor %}
+    <hr class="divider">
+    <h2>Ann Arbor Extras</h2>
+    {% for extra in aa_extras %}
         <hr class="smaller divider">
     		<a href='{{extra.link}}' target="_blank" rel="noopener noreferrer">{{extra.name}}</a>
         {% if extra.photo %}
