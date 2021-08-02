@@ -115,7 +115,7 @@ def scavengerhunt_view(request, loc):
     completionSet = user_instance.aa_questions_completed if loc == 'AnnArbor' else user_instance.campus_questions_completed
     conclusion = AnnArborConclusion if loc == 'AnnArbor' else CampusConclusion
 
-    context = {'loc': loc, 'coclusion': conclusion,}
+    context = {'loc': loc, 'conclusion': conclusion.objects.get(), 'lastno': questionSet.objects.all().count(),}
 
     if 'answer' in request.POST:
         question_answered = questionSet.objects.get(pk=request.POST['questionno'])

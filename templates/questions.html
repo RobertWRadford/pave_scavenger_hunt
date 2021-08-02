@@ -31,26 +31,40 @@
             <input name="questionno" type='hidden' value="{{riddle.pk}}">
             <input type="hidden" name="page" value="{{pageno}}">
             {% if riddle.resolveType.answerOne %}
-                <input type="radio" id='one' name="answer" value="{{riddle.resolveType.answerOne}}">
-                <label for='one'>{{riddle.resolveType.answerOne}}</label>
-                <input type="radio" id='two' name="answer" value="{{riddle.resolveType.answerTwo}}">
-                <label for='two'>{{riddle.resolveType.answerTwo}}</label>
-                {% if riddle.resolveType.answerThree %}
-                    <input type="radio" id='three' name="answer" value="{{riddle.resolveType.answerThree}}">
-                    <label for='three'>{{riddle.resolveType.answerThree}}</label>
-                {% endif %}
-                {% if riddle.resolveType.answerFour %}
-                    <input type="radio" id='four' name="answer" value="{{riddle.resolveType.answerFour}}">
-                    <label for='four'>{{riddle.resolveType.answerFour}}</label>
-                {% endif %}
-                {% if riddle.resolveType.answerFive %}
-                    <input type="radio" id='five' name="answer" value="{{riddle.resolveType.answerFive}}">
-                    <label for='five'>{{riddle.resolveType.answerFive}}</label>
-                {% endif %}
-                {% if riddle.resolveType.answerSix %}
-                    <input type="radio" id='six' name="answer" value="{{riddle.resolveType.answerSix}}">
-                    <label for='six'>{{riddle.resolveType.answerSix}}</label>
-                {% endif %}
+                <div class="radioAnswers">
+                    <div class="radioOption">
+                        <input type="radio" id='one' name="answer" value="{{riddle.resolveType.answerOne}}">
+                        <label for='one'>{{riddle.resolveType.answerOne}}</label>
+                    </div>
+                    <div class="radioOption">
+                        <input type="radio" id='two' name="answer" value="{{riddle.resolveType.answerTwo}}">
+                        <label for='two'>{{riddle.resolveType.answerTwo}}</label>
+                    </div>
+                    {% if riddle.resolveType.answerThree %}
+                        <div class="radioOption">
+                            <input type="radio" id='three' name="answer" value="{{riddle.resolveType.answerThree}}">
+                            <label for='three'>{{riddle.resolveType.answerThree}}</label>
+                        </div>
+                    {% endif %}
+                    {% if riddle.resolveType.answerFour %}
+                        <div class="radioOption">
+                            <input type="radio" id='four' name="answer" value="{{riddle.resolveType.answerFour}}">
+                            <label for='four'>{{riddle.resolveType.answerFour}}</label>
+                        </div>
+                    {% endif %}
+                    {% if riddle.resolveType.answerFive %}
+                        <div class="radioOption">        
+                            <input type="radio" id='five' name="answer" value="{{riddle.resolveType.answerFive}}">
+                            <label for='five'>{{riddle.resolveType.answerFive}}</label>
+                        </div>
+                    {% endif %}
+                    {% if riddle.resolveType.answerSix %}
+                        <div class="radioOption">
+                            <input type="radio" id='six' name="answer" value="{{riddle.resolveType.answerSix}}">
+                            <label for='six'>{{riddle.resolveType.answerSix}}</label>
+                        </div>
+                    {% endif %}
+                </div>
             {% else %}
                 <input {%if incorrect%}class='incorrectAnswer'{%endif%} name="answer" type="text" placeholder="Answer...">
             {% endif %}
@@ -89,12 +103,12 @@
             <p>{{riddle.location.description|linebreaks}}</p>
             {%if riddle.directions%}
                 <hr class="smaller divider">
-                <h3>Directions</h3>
+                <h2>Directions</h2>
                 <p>{{riddle.directions|linebreaks}}</p>
             {%endif%}
-            {% if forloop.last %}
+            {% if page_obj.number == page_obj.paginator.num_pages %}
                 <hr class="smaller divider">
-                <h3>Congratulations!</h3>
+                <h2>Congratulations!</h2>
                 <p>{{conclusion.text|linebreaks}}</p>
             {% endif %}
             {%if riddle.location.link%}
@@ -105,24 +119,21 @@
     {% endfor %}
     <hr class="divider">
     <div class="pagination">
-        <span class="step-links">
-            {% if page_obj.has_previous %}
-                <a href="?page=1">&laquo; first</a>
-                <a href="?page={{ page_obj.previous_page_number }}">&lt;</a>
-            {% endif %}
+        {% if page_obj.has_previous %}
+            <a class='pagFirst' href="?page=1">&laquo; first</a>
+            <a class='pagPrev' href="?page={{ page_obj.previous_page_number }}">&lt;</a>
+        {% endif %}
 
-            <span class="current">
-                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-            </span>
-
-            {% if page_obj.has_next %}
-                <a href="?page={{ page_obj.next_page_number }}">&gt;</a>
-                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
-            {% endif %}
+        <span class="pagCurrent">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
         </span>
+
+        {% if page_obj.has_next %}
+            <a class='pagNext' href="?page={{ page_obj.next_page_number }}">&gt;</a>
+            <a class='pagLast' href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
     </div>
 </section>
-
 <script>
     var slideIndex = 1;
     var locSlideIndex = 1;

@@ -1,9 +1,13 @@
 body{
     background-image: url("https://www.commonapp.org/static/1c588201d2773604b235f6e2aa423c67/university-michigan_439.jpg");
     color: white;
-    font-family: 'Nunito', sans-serif;
     margin:0;
     padding: 0;
+    word-break: break-word;
+}
+
+p, h1, h2, h3 {
+	font-family: 'Nunito', sans-serif;
 }
 
 img {
@@ -95,7 +99,7 @@ footer a:hover {
 	}
 
 	.navBarItem.standalone {
-		padding-left: 5vw;
+		padding-left: 3vw;
 	}
 
 	.profileName {
@@ -164,16 +168,15 @@ footer a:hover {
 	color: #ffcb0b;
 	text-align: center;
 	margin:auto;
-	margin-top: 5vw;
+	margin-top: max(2%, 10px);
 	margin-bottom: 3vw;
 	background-color: rgba(0,50,106,0.80);
 	border: 1px solid white;
 	border-radius: 25px;
 	word-wrap: break-word;
-	padding: 5%;
-	padding-top: 0;
+	padding: 1% 5%;
 	line-height: max(2.2vw, 22px);
-	width:80%;
+	width: max(75%, 325px);
 }
 
 .contentSection *:not(h1, h2, h3, h4) {
@@ -182,6 +185,7 @@ footer a:hover {
 
 .contentSection h1 {
 	font-size: max(2.2vw,22px);
+	margin: 1% 0;
 }
 
 .contentSection h1 p{
@@ -189,7 +193,7 @@ footer a:hover {
 }
 
 .contentSection h2 {
-	font-size: max(1.8vw,18px);
+	font-size: max(1.8vw,15px);
 }
 
 .contentSection h2 p {
@@ -197,7 +201,7 @@ footer a:hover {
 }
 
 .contentSection h3 {
-	font-size: max(1.6vw,16px);
+	font-size: max(1.6vw,10px);
 	font-weight: 500;
 }
 
@@ -255,11 +259,39 @@ input[type=submit]:hover {
 }
 
 .pagination {
-	margin-top: 3vw;
+	margin: max(1vw, 10px) 0 0 0;
+	display: grid;
+	grid-template-columns: 20% 12% 36% 12% 20%;
+	place-items: center;
 }
 
-.pagination * {
-	padding: 1.5vw;
+.pagination > a {
+	font-size: max(1.6vw, 16px);
+}
+
+.pagFirst {
+	grid-column-start: 1;
+	grid-column-end: 2;
+}
+
+.pagPrev {
+	grid-column-start: 2;
+	grid-column-end: 3;
+}
+
+.pagCurrent {
+	grid-column-start: 3;
+	grid-column-end: 4;
+}
+
+.pagNext {
+	grid-column-start: 4;
+	grid-column-end: 5;
+}
+
+.pagLast {
+	grid-column-start: 5;
+	grid-column-end: 6;
 }
 
 .helptext{
@@ -289,20 +321,92 @@ input[type=submit]:hover {
 	transform: translateX(-50%);
 }
 
+.aboutMember {
+	display: grid;
+	width: 100%;
+	grid-template-columns: 40% 60%;
+}
+
+.aboutLeftBox {
+	display: flex;
+	flex-direction: column;
+    align-content: center;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    padding: 0 5%;
+}
+
+.aboutRightBox {
+	display: flex;
+	align-items: center;
+	text-align: center;
+	width: 100%;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    padding: 0 5px 0 10px;
+}
+
 .memberPhoto{
-	width: max(25%, 100px);
+	width: max(50%, 100px);
     border-radius: 10% 30%;
-    border: solid 4px #ffcb0b;
+    border: solid max(.3vw, 3px) #ffcb0b;
 }
 
 .divider {
-    width:80%;
+    width:95%;
     margin:auto;
     border-radius: 25px;
-    margin-top: max(1.5vw, 15px);
+    margin-top: max(1vw, 10px);
+    margin-bottom: max(1vw, 10px);
 }
 .smaller.divider {
-    width:40%;
-    margin-top: 25px;
-    margin-bottom: 25px;
+    width:35%;
+    margin-top: max(1vw, 10px);
+    margin-bottom: max(1vw, 10px);
+}
+
+.radioAnswers {
+	border: solid max(.2vw, 2px) #ffcb0b;
+	border-radius: 15px;
+	display: flex;
+	flex-direction: column;
+    align-content: center;
+    align-items: flex-start;
+    justify-content: center;
+    width: 50%;
+    padding: 5px;
+    margin: max(1vw, 10px) 25%;
+    background-color: rgba(0,50,106,0.80);
+}
+
+.radioOption {
+	width: 100%;
+	display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    align-content: center;
+}
+
+.radioOption > label {
+	text-align: left;
+	margin: max(.5vw, 5px);
+}
+
+.radioOption > *:hover {
+	cursor: pointer;
+	color: white;
+}
+
+p.incorrectAnswer {
+	color: red;
+	font-weight: 900;
+	font-size: max(1.8vw, 18px);
+	text-decoration-line: underline;
+}
+
+input.incorrectAnswer {
+	border: solid red max(.2vw, 2px);
 }
