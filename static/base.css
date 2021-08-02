@@ -6,7 +6,7 @@ body{
     word-break: break-word;
 }
 
-p {
+p, h1, h2, h3 {
 	font-family: 'Nunito', sans-serif;
 }
 
@@ -174,7 +174,7 @@ footer a:hover {
 	border: 1px solid white;
 	border-radius: 25px;
 	word-wrap: break-word;
-	padding: 1% 10%;
+	padding: 1% 5%;
 	line-height: max(2.2vw, 22px);
 	width: max(75%, 325px);
 }
@@ -193,7 +193,7 @@ footer a:hover {
 }
 
 .contentSection h2 {
-	font-size: max(1.8vw,18px);
+	font-size: max(1.8vw,15px);
 }
 
 .contentSection h2 p {
@@ -201,7 +201,7 @@ footer a:hover {
 }
 
 .contentSection h3 {
-	font-size: max(1.6vw,16px);
+	font-size: max(1.6vw,10px);
 	font-weight: 500;
 }
 
@@ -304,7 +304,7 @@ input[type=submit]:hover {
 	flex-direction: column;
     align-content: center;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     width: 100%;
     grid-column-start: 1;
     grid-column-end: 2;
@@ -318,11 +318,11 @@ input[type=submit]:hover {
 	width: 100%;
     grid-column-start: 2;
     grid-column-end: 3;
-    padding: 5px;
+    padding: 0 5px 0 10px;
 }
 
 .memberPhoto{
-	width: max(60%, 90px);
+	width: max(50%, 100px);
     border-radius: 10% 30%;
     border: solid max(.3vw, 3px) #ffcb0b;
 }
