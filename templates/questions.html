@@ -3,8 +3,6 @@
 {% block content %}
 <section class="contentSection">
     {% for riddle in page_obj %}
-        <h1>Scavenger Hunt</h1>
-        <hr class="divider">
         {% if riddle.resolveType.intro %}
             <p>{{riddle.resolveType.intro|linebreaks}}</p>
         {% endif %}

@@ -4,10 +4,16 @@ body{
     margin:0;
     padding: 0;
     word-break: break-word;
+    font-family: 'Nunito', sans-serif;
 }
 
-p, h1, h2, h3 {
+.navBarTitle > strong {
+	font-weight: 700;
+}
+
+p, h1, h2, h3, label {
 	font-family: 'Nunito', sans-serif;
+	font-style: italic;
 }
 
 img {
@@ -56,7 +62,7 @@ footer a:hover {
 }
 
 .extraimg {
-    width: max(40%, 180px);
+    width: max(50%, 100px);
     display: block;
     margin: auto;
     margin-top: 15px;
@@ -84,7 +90,7 @@ footer a:hover {
 
 	.navBarTitle {
 		grid-area: header;
-		font-size: max(3.4vw, 34px);
+		font-size: max(3.8vw, 38px);
 	    text-align: center;
 	    text-shadow: 
 	    1px 1px rgb(120, 105, 20),
@@ -171,13 +177,13 @@ footer a:hover {
 	margin:auto;
 	margin-top: max(2%, 10px);
 	margin-bottom: 3vw;
-	background-color: rgba(0,50,106,0.80);
+	background-color: rgba(0,50,106,0.90);
 	border: 1px solid white;
 	border-radius: 25px;
 	word-wrap: break-word;
-	padding: 1% 5%;
+	padding: 1% 5% 5% 5%;
 	line-height: max(2.2vw, 22px);
-	width: max(75%, 325px);
+	width: max(95%, 325px);
 }
 
 .contentSection *:not(h1, h2, h3, h4) {
@@ -186,6 +192,10 @@ footer a:hover {
 
 .contentSection h1 {
 	font-size: max(2.2vw,22px);
+	margin: 5% 0 1% 0;
+}
+
+.contentSection .top {
 	margin: 1% 0;
 }
 
@@ -195,6 +205,7 @@ footer a:hover {
 
 .contentSection h2 {
 	font-size: max(1.8vw,15px);
+	margin: 5% 0 1% 0;
 }
 
 .contentSection h2 p {
@@ -396,6 +407,7 @@ input[type=submit]:hover {
 .radioOption > label {
 	text-align: left;
 	margin: max(.5vw, 5px);
+	font-size: max(1.6vw, 16px);
 }
 
 .radioOption > *:hover {
