@@ -4,12 +4,14 @@
 
 .carouselImage {
   width: 100%;
+  max-height: 80vh;
 }
 
 /* Slideshow container */
 .slideshow-container {
   margin: auto;
   width: max(60%, 290px);
+  max-height: 80vh;
   position: relative;
 }
 
